@@ -25,8 +25,8 @@ dependencyResolutionManagement {
 rootProject.name = "Car Scape"
 include(":app")
 include(":core:common")
-//include(":core:designsystem")
+include(":core:designsystem")
 include(":domain")
-//include(":data")
-//include(":feature:game")
+include(":data")
+include(":feature:game")
  

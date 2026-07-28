@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml:2:13-83
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml:2:13-83
+	package
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml
+	xmlns:android
+		ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml:2:23-81
+uses-sdk
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml reason: use-sdk injection requested
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml
+	android:targetSdkVersion
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml
+	android:minSdkVersion
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest890746113402585599.xml

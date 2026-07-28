@@ -1,0 +1,11 @@
+{
+  "rows": 6,
+  "cols": 6,
+  "vehicles": [
+    { "id": "red_bus", "orientation": "HORIZONTAL", "length": 2, "headRow": 2, "headCol": 1, "colorIndex": 0 },
+    { "id": "blue_car", "orientation": "VERTICAL", "length": 2, "headRow": 0, "headCol": 4, "colorIndex": 1 }
+  ],
+  "exits": [
+    { "row": 2, "col": 5, "orientation": "HORIZONTAL", "colorIndex": 0 }
+  ]
+}

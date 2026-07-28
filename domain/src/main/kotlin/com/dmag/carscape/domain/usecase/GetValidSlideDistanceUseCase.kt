@@ -3,10 +3,11 @@ package com.dmag.carscape.domain.usecase
 import com.dmag.carscape.domain.model.Board
 import com.dmag.carscape.domain.model.Orientation
 import com.dmag.carscape.domain.model.Vehicle
+import javax.inject.Inject
 
 enum class SlideDirection { UP, DOWN, LEFT, RIGHT }
 
-class GetValidSlideDistanceUseCase {
+class GetValidSlideDistanceUseCase @Inject constructor() {
     operator fun invoke(board: Board, vehicle: Vehicle, direction: SlideDirection): Int {
         val step = when (direction) {
             SlideDirection.UP, SlideDirection.LEFT -> -1

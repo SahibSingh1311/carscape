@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.dmag.carscape.feature.game-release-46:/color/vector_tint_theme_color.xml",
+        "source": "com.dmag.carscape.feature.game-ui-5:/color/vector_tint_theme_color.xml"
+    },
+    {
+        "merged": "com.dmag.carscape.feature.game-release-46:/color/vector_tint_color.xml",
+        "source": "com.dmag.carscape.feature.game-ui-5:/color/vector_tint_color.xml"
+    }
+]

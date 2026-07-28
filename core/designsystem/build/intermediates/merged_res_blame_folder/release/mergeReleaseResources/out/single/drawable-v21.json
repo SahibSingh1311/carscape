@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.dmag.carscape.core.designsystem-release-40:/drawable-v21/notification_action_background.xml",
+        "source": "com.dmag.carscape.core.designsystem-core-1.13.1-32:/drawable-v21/notification_action_background.xml"
+    }
+]

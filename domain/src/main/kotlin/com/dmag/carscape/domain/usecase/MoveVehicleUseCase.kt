@@ -2,8 +2,9 @@ package com.dmag.carscape.domain.usecase
 
 import com.dmag.carscape.domain.model.GameState
 import com.dmag.carscape.domain.model.Orientation
+import javax.inject.Inject
 
-class MoveVehicleUseCase(
+class MoveVehicleUseCase @Inject constructor(
     private val getValidSlideDistance: GetValidSlideDistanceUseCase,
     private val checkExit: CheckExitUseCase
 ) {

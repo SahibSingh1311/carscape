@@ -1,0 +1,46 @@
+package com.dmag.carscape.data.di
+
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.dmag.carscape.core.common.DefaultDispatcherProvider
+import com.dmag.carscape.core.common.DispatcherProvider
+import com.dmag.carscape.data.repository.LevelRepositoryImpl
+import com.dmag.carscape.data.repository.ProgressRepositoryImpl
+import com.dmag.carscape.domain.repository.LevelRepository
+import com.dmag.carscape.domain.repository.ProgressRepository
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "carscape_progress")
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataStoreModule {
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.dataStore
+
+    @Provides
+    @Singleton
+    fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+    @Binds
+    @Singleton
+    abstract fun bindLevelRepository(impl: LevelRepositoryImpl): LevelRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindProgressRepository(impl: ProgressRepositoryImpl): ProgressRepository
+}
