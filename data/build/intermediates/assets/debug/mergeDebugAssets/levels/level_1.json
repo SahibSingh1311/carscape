@@ -6,6 +6,7 @@
     { "id": "blue_car", "orientation": "VERTICAL", "length": 2, "headRow": 0, "headCol": 4, "colorIndex": 1 }
   ],
   "exits": [
-    { "row": 2, "col": 5, "orientation": "HORIZONTAL", "colorIndex": 0 }
+    { "row": 2, "col": 5, "orientation": "HORIZONTAL", "colorIndex": 0 },
+    { "row": 5, "col": 4, "orientation": "VERTICAL", "colorIndex": 1 }
   ]
 }

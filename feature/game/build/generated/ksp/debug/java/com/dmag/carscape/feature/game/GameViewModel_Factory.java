@@ -3,6 +3,7 @@ package com.dmag.carscape.feature.game;
 import com.dmag.carscape.core.common.DispatcherProvider;
 import com.dmag.carscape.domain.repository.LevelRepository;
 import com.dmag.carscape.domain.repository.ProgressRepository;
+import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase;
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
@@ -34,33 +35,38 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   private final Provider<MoveVehicleUseCase> moveVehicleProvider;
 
+  private final Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider;
+
   private final Provider<DispatcherProvider> dispatchersProvider;
 
   private GameViewModel_Factory(Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
+      Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
     this.levelRepositoryProvider = levelRepositoryProvider;
     this.progressRepositoryProvider = progressRepositoryProvider;
     this.moveVehicleProvider = moveVehicleProvider;
+    this.getValidSlideDistanceProvider = getValidSlideDistanceProvider;
     this.dispatchersProvider = dispatchersProvider;
   }
 
   @Override
   public GameViewModel get() {
-    return newInstance(levelRepositoryProvider.get(), progressRepositoryProvider.get(), moveVehicleProvider.get(), dispatchersProvider.get());
+    return newInstance(levelRepositoryProvider.get(), progressRepositoryProvider.get(), moveVehicleProvider.get(), getValidSlideDistanceProvider.get(), dispatchersProvider.get());
   }
 
   public static GameViewModel_Factory create(Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
+      Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    return new GameViewModel_Factory(levelRepositoryProvider, progressRepositoryProvider, moveVehicleProvider, dispatchersProvider);
+    return new GameViewModel_Factory(levelRepositoryProvider, progressRepositoryProvider, moveVehicleProvider, getValidSlideDistanceProvider, dispatchersProvider);
   }
 
   public static GameViewModel newInstance(LevelRepository levelRepository,
       ProgressRepository progressRepository, MoveVehicleUseCase moveVehicle,
-      DispatcherProvider dispatchers) {
-    return new GameViewModel(levelRepository, progressRepository, moveVehicle, dispatchers);
+      GetValidSlideDistanceUseCase getValidSlideDistance, DispatcherProvider dispatchers) {
+    return new GameViewModel(levelRepository, progressRepository, moveVehicle, getValidSlideDistance, dispatchers);
   }
 }

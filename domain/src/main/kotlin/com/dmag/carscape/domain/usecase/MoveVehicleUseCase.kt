@@ -5,13 +5,11 @@ import com.dmag.carscape.domain.model.Orientation
 import javax.inject.Inject
 
 class MoveVehicleUseCase @Inject constructor(
-    private val getValidSlideDistance: GetValidSlideDistanceUseCase,
     private val checkExit: CheckExitUseCase
 ) {
-    operator fun invoke(state: GameState, vehicleId: String, direction: SlideDirection): GameState {
-        val vehicle = state.board.vehicles.find { it.id == vehicleId } ?: return state
-        val distance = getValidSlideDistance(state.board, vehicle, direction)
+    operator fun invoke(state: GameState, vehicleId: String, distance: Int): GameState {
         if (distance == 0) return state
+        val vehicle = state.board.vehicles.find { it.id == vehicleId } ?: return state
 
         val movedVehicle = vehicle.copy(
             head = if (vehicle.orientation == Orientation.VERTICAL)

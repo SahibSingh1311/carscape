@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.domain.model.GameState
+import com.dmag.carscape.domain.model.Orientation
+import com.dmag.carscape.domain.model.Vehicle
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase
 import com.dmag.carscape.domain.usecase.SlideDirection
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +23,7 @@ class GameViewModel @Inject constructor(
     private val levelRepository: LevelRepository,
     private val progressRepository: ProgressRepository,
     private val moveVehicle: MoveVehicleUseCase,
+    private val getValidSlideDistance: GetValidSlideDistanceUseCase,
     private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
@@ -44,9 +48,9 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    fun onVehicleDragged(vehicleId: String, direction: SlideDirection) {
+    fun onVehicleDragged(vehicleId: String, distance: Int) {
         val current = gameState ?: return
-        val updated = moveVehicle(current, vehicleId, direction)
+        val updated = moveVehicle(current, vehicleId, distance)
         gameState = updated
         _uiState.value = updated.toUiState(currentLevelNumber)
 
@@ -57,6 +61,16 @@ class GameViewModel @Inject constructor(
         }
     }
 
+    fun getDragBounds(vehicle: Vehicle): DragBounds {
+        val board = gameState?.board ?: return DragBounds(0, 0)
+        val forwardDirection = if (vehicle.orientation == Orientation.HORIZONTAL) SlideDirection.RIGHT else SlideDirection.DOWN
+        val backwardDirection = if (vehicle.orientation == Orientation.HORIZONTAL) SlideDirection.LEFT else SlideDirection.UP
+
+        val forward = getValidSlideDistance(board, vehicle, forwardDirection)
+        val backward = getValidSlideDistance(board, vehicle, backwardDirection)
+        return DragBounds(maxForwardCells = forward, maxBackwardCells = kotlin.math.abs(backward))
+    }
+
     private fun GameState.toUiState(levelNumber: Int) = GameUiState.Success(
         board = board,
         moves = moves,
@@ -64,3 +78,5 @@ class GameViewModel @Inject constructor(
         levelNumber = levelNumber
     )
 }
+
+data class DragBounds(val maxForwardCells: Int, val maxBackwardCells: Int)

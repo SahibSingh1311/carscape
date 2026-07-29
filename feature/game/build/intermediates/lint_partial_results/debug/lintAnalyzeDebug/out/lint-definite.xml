@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.1.1" type="incidents">
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`">
+        <fix-replace
+            description="Replace with mutableFloatStateOf"
+            replacement="androidx.compose.runtime.mutableFloatStateOf"
+            shortenNames="true"
+            priority="0">
+            <range
+                file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/BoardCanvas.kt"
+                startOffset="1106"
+                endOffset="1120"/>
+        </fix-replace>
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/BoardCanvas.kt"
+            line="29"
+            column="36"
+            startOffset="1106"
+            endLine="29"
+            endColumn="50"
+            endOffset="1120"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`">
+        <fix-replace
+            description="Replace with mutableFloatStateOf"
+            replacement="androidx.compose.runtime.mutableFloatStateOf"
+            shortenNames="true"
+            priority="0">
+            <range
+                file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
+                startOffset="1928"
+                endOffset="1942"/>
+        </fix-replace>
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
+            line="46"
+            column="50"
+            startOffset="1928"
+            endLine="46"
+            endColumn="64"
+            endOffset="1942"/>
+    </incident>
+
+</incidents>
