@@ -29,4 +29,4 @@ include(":core:designsystem")
 include(":domain")
 include(":data")
 include(":feature:game")
- 
+include(":feature:home")

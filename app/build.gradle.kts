@@ -57,10 +57,12 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(project(":feature:game"))
+    implementation(project(":feature:home"))
 }

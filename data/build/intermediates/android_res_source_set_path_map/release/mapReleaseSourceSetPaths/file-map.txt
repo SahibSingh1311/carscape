@@ -1,8 +1,0 @@
-com.dmag.carscape.data-pngs-0 D:\CarScape\data\build\generated\res\pngs\release
-com.dmag.carscape.data-updated_navigation_xml-1 D:\CarScape\data\build\generated\updated_navigation_xml\release
-com.dmag.carscape.data-mergeReleaseResources-2 D:\CarScape\data\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
-com.dmag.carscape.data-mergeReleaseResources-3 D:\CarScape\data\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
-com.dmag.carscape.data-release-4 D:\CarScape\data\build\intermediates\merged_res\release\mergeReleaseResources
-com.dmag.carscape.data-release-5 D:\CarScape\data\build\intermediates\packaged_res\release\packageReleaseResources
-com.dmag.carscape.data-main-6 D:\CarScape\data\src\main\res
-com.dmag.carscape.data-release-7 D:\CarScape\data\src\release\res

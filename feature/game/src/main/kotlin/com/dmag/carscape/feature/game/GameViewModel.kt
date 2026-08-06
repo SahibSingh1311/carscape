@@ -11,6 +11,7 @@ import com.dmag.carscape.domain.repository.ProgressRepository
 import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase
 import com.dmag.carscape.domain.usecase.SlideDirection
+import com.dmag.carscape.feature.game.audio.GameSoundPlayer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,6 +25,7 @@ class GameViewModel @Inject constructor(
     private val progressRepository: ProgressRepository,
     private val moveVehicle: MoveVehicleUseCase,
     private val getValidSlideDistance: GetValidSlideDistanceUseCase,
+    private val soundPlayer: GameSoundPlayer,
     private val dispatchers: DispatcherProvider
 ) : ViewModel() {
 
@@ -48,19 +50,6 @@ class GameViewModel @Inject constructor(
         }
     }
 
-    fun onVehicleDragged(vehicleId: String, distance: Int) {
-        val current = gameState ?: return
-        val updated = moveVehicle(current, vehicleId, distance)
-        gameState = updated
-        _uiState.value = updated.toUiState(currentLevelNumber)
-
-        if (updated.isSolved) {
-            viewModelScope.launch(dispatchers.io) {
-                progressRepository.setUnlockedLevel(currentLevelNumber + 1)
-            }
-        }
-    }
-
     fun getDragBounds(vehicle: Vehicle): DragBounds {
         val board = gameState?.board ?: return DragBounds(0, 0)
         val forwardDirection = if (vehicle.orientation == Orientation.HORIZONTAL) SlideDirection.RIGHT else SlideDirection.DOWN
@@ -77,6 +66,35 @@ class GameViewModel @Inject constructor(
         isSolved = isSolved,
         levelNumber = levelNumber
     )
+
+    fun onVehicleDragged(vehicleId: String, distance: Int) {
+        val current = gameState ?: return
+        val previousVehicleCount = current.board.vehicles.size
+
+        val updated = moveVehicle(current, vehicleId, distance)
+        if (updated === current) return // no-op move, nothing to update or play
+
+        gameState = updated
+        _uiState.value = updated.toUiState(currentLevelNumber)
+
+        if (updated.board.vehicles.size < previousVehicleCount) {
+            soundPlayer.playExit()
+        } else {
+            soundPlayer.playMove()
+        }
+
+        if (updated.isSolved) {
+            soundPlayer.playWin()
+            viewModelScope.launch(dispatchers.io) {
+                progressRepository.setUnlockedLevel(currentLevelNumber + 1)
+            }
+        }
+    }
+
+    override fun onCleared() {
+        soundPlayer.release()
+        super.onCleared()
+    }
 }
 
 data class DragBounds(val maxForwardCells: Int, val maxBackwardCells: Int)

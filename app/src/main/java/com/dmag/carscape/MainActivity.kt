@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.dmag.carscape.core.designsystem.theme.CarScapeTheme
-import com.dmag.carscape.feature.game.GameScreen
+import com.dmag.carscape.navigation.CarScapeNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CarScapeTheme {
-                GameScreen()
+                CarScapeNavHost()
             }
         }
     }
