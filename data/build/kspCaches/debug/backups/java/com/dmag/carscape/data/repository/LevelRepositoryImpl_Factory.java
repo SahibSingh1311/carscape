@@ -1,7 +1,7 @@
 package com.dmag.carscape.data.repository;
 
-import android.content.Context;
 import com.dmag.carscape.core.common.DispatcherProvider;
+import com.google.firebase.firestore.FirebaseFirestore;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.Provider;
@@ -10,7 +10,7 @@ import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
 
 @ScopeMetadata
-@QualifierMetadata("dagger.hilt.android.qualifiers.ApplicationContext")
+@QualifierMetadata
 @DaggerGenerated
 @Generated(
     value = "dagger.internal.codegen.ComponentProcessor",
@@ -26,27 +26,28 @@ import javax.annotation.processing.Generated;
     "nullness:initialization.field.uninitialized"
 })
 public final class LevelRepositoryImpl_Factory implements Factory<LevelRepositoryImpl> {
-  private final Provider<Context> contextProvider;
+  private final Provider<FirebaseFirestore> firestoreProvider;
 
   private final Provider<DispatcherProvider> dispatchersProvider;
 
-  private LevelRepositoryImpl_Factory(Provider<Context> contextProvider,
+  private LevelRepositoryImpl_Factory(Provider<FirebaseFirestore> firestoreProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    this.contextProvider = contextProvider;
+    this.firestoreProvider = firestoreProvider;
     this.dispatchersProvider = dispatchersProvider;
   }
 
   @Override
   public LevelRepositoryImpl get() {
-    return newInstance(contextProvider.get(), dispatchersProvider.get());
+    return newInstance(firestoreProvider.get(), dispatchersProvider.get());
   }
 
-  public static LevelRepositoryImpl_Factory create(Provider<Context> contextProvider,
+  public static LevelRepositoryImpl_Factory create(Provider<FirebaseFirestore> firestoreProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    return new LevelRepositoryImpl_Factory(contextProvider, dispatchersProvider);
+    return new LevelRepositoryImpl_Factory(firestoreProvider, dispatchersProvider);
   }
 
-  public static LevelRepositoryImpl newInstance(Context context, DispatcherProvider dispatchers) {
-    return new LevelRepositoryImpl(context, dispatchers);
+  public static LevelRepositoryImpl newInstance(FirebaseFirestore firestore,
+      DispatcherProvider dispatchers) {
+    return new LevelRepositoryImpl(firestore, dispatchers);
   }
 }

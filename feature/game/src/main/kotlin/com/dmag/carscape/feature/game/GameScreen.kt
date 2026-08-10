@@ -1,9 +1,12 @@
 package com.dmag.carscape.feature.game
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -72,6 +75,18 @@ fun GameScreen(
         ) {
             when (val current = state) {
                 is GameUiState.Loading -> CircularProgressIndicator()
+
+                is GameUiState.NoMoreLevels -> {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("You've cleared all available levels!")
+                        Text("More levels coming soon 🚗")
+                        Spacer(modifier = Modifier.height(16.dp))
+                        com.dmag.carscape.core.designsystem.component.CarScapeButton(
+                            text = "Back to Home",
+                            onClick = onNavigateHome
+                        )
+                    }
+                }
 
                 is GameUiState.Success -> {
                     Box(modifier = Modifier.padding(16.dp)) {

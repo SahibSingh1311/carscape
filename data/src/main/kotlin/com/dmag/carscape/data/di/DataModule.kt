@@ -10,6 +10,7 @@ import com.dmag.carscape.data.repository.LevelRepositoryImpl
 import com.dmag.carscape.data.repository.ProgressRepositoryImpl
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -31,6 +32,10 @@ object DataStoreModule {
     @Provides
     @Singleton
     fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
+
+    @Provides
+    @Singleton
+    fun provideFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 }
 
 @Module

@@ -1,0 +1,8 @@
+com.dmag.carscape.feature.game-pngs-0 D:\CarScape\feature\game\build\generated\res\pngs\release
+com.dmag.carscape.feature.game-updated_navigation_xml-1 D:\CarScape\feature\game\build\generated\updated_navigation_xml\release
+com.dmag.carscape.feature.game-mergeReleaseResources-2 D:\CarScape\feature\game\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.dmag.carscape.feature.game-mergeReleaseResources-3 D:\CarScape\feature\game\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.dmag.carscape.feature.game-release-4 D:\CarScape\feature\game\build\intermediates\merged_res\release\mergeReleaseResources
+com.dmag.carscape.feature.game-release-5 D:\CarScape\feature\game\build\intermediates\packaged_res\release\packageReleaseResources
+com.dmag.carscape.feature.game-main-6 D:\CarScape\feature\game\src\main\res
+com.dmag.carscape.feature.game-release-7 D:\CarScape\feature\game\src\release\res

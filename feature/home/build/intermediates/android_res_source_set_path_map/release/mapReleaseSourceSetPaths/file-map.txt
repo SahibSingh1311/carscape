@@ -1,0 +1,8 @@
+com.dmag.carscape.feature.home-pngs-0 D:\CarScape\feature\home\build\generated\res\pngs\release
+com.dmag.carscape.feature.home-updated_navigation_xml-1 D:\CarScape\feature\home\build\generated\updated_navigation_xml\release
+com.dmag.carscape.feature.home-mergeReleaseResources-2 D:\CarScape\feature\home\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.dmag.carscape.feature.home-mergeReleaseResources-3 D:\CarScape\feature\home\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.dmag.carscape.feature.home-release-4 D:\CarScape\feature\home\build\intermediates\merged_res\release\mergeReleaseResources
+com.dmag.carscape.feature.home-release-5 D:\CarScape\feature\home\build\intermediates\packaged_res\release\packageReleaseResources
+com.dmag.carscape.feature.home-main-6 D:\CarScape\feature\home\src\main\res
+com.dmag.carscape.feature.home-release-7 D:\CarScape\feature\home\src\release\res

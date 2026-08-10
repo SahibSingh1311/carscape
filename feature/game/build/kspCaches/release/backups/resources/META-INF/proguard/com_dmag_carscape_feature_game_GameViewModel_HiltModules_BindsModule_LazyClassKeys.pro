@@ -1,0 +1,1 @@
+-keep,allowobfuscation,allowshrinking class com.dmag.carscape.feature.game.GameViewModel

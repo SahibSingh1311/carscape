@@ -11,4 +11,6 @@ sealed interface GameUiState {
         val isSolved: Boolean,
         val levelNumber: Int
     ) : GameUiState
+
+    data class NoMoreLevels(val lastLevelNumber: Int) : GameUiState
 }

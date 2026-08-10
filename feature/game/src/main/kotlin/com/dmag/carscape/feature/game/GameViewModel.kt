@@ -43,10 +43,14 @@ class GameViewModel @Inject constructor(
         currentLevelNumber = levelNumber
         viewModelScope.launch(dispatchers.io) {
             _uiState.value = GameUiState.Loading
-            val board = levelRepository.getLevel(levelNumber)
-            val newState = GameState(board = board)
-            gameState = newState
-            _uiState.value = newState.toUiState(levelNumber)
+            try {
+                val board = levelRepository.getLevel(levelNumber)
+                val newState = GameState(board = board)
+                gameState = newState
+                _uiState.value = newState.toUiState(levelNumber)
+            } catch (e: NoSuchElementException) {
+                _uiState.value = GameUiState.NoMoreLevels(lastLevelNumber = levelNumber - 1)
+            }
         }
     }
 

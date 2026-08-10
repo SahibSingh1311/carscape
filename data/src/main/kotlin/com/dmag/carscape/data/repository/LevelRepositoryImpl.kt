@@ -1,30 +1,41 @@
 package com.dmag.carscape.data.repository
 
-import android.content.Context
+import android.util.Log
+import com.dmag.carscape.data.BuildConfig
 import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.data.mapper.toDomain
 import com.dmag.carscape.data.model.LevelDto
 import com.dmag.carscape.domain.model.Board
 import com.dmag.carscape.domain.repository.LevelRepository
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
+private const val TAG = "LevelRepository"
+
 class LevelRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
+    private val firestore: FirebaseFirestore,
     private val dispatchers: DispatcherProvider
 ) : LevelRepository {
 
-    private val json = Json { ignoreUnknownKeys = true }
-
     override suspend fun getLevel(levelNumber: Int): Board = withContext(dispatchers.io) {
-        val fileName = "levels/level_$levelNumber.json"
-        val jsonText = context.assets.open(fileName).bufferedReader().use { it.readText() }
-        json.decodeFromString<LevelDto>(jsonText).toDomain()
+        val snapshot = firestore.collection("levels")
+            .document(levelNumber.toString())
+            .get()
+            .await()
+
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Fetched level $levelNumber raw data: ${snapshot.data}")
+        }
+
+        val dto = snapshot.toObject(LevelDto::class.java)
+            ?: throw NoSuchElementException("Level $levelNumber not found")
+
+        dto.toDomain()
     }
 
     override suspend fun getLevelCount(): Int = withContext(dispatchers.io) {
-        context.assets.list("levels")?.size ?: 0
+        firestore.collection("levels").get().await().size()
     }
 }
