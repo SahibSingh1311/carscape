@@ -1,9 +1,9 @@
 <libraries>
   <library
       name=":@@:feature:game::debug"
-      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5f6bb60cd164eaa46e1686125ae8cb51\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5f6bb60cd164eaa46e1686125ae8cb51\workspace\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\2bcf01e32298c2dc5e953fe4b9937517\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\2bcf01e32298c2dc5e953fe4b9937517\workspace\transformed\out\jars\libs\R.jar"
       resolved="Car Scape.feature:game:unspecified"
-      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5f6bb60cd164eaa46e1686125ae8cb51\workspace\transformed\out"
+      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\2bcf01e32298c2dc5e953fe4b9937517\workspace\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

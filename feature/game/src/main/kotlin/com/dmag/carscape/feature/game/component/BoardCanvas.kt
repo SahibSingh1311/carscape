@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import com.dmag.carscape.core.designsystem.theme.ExitGlow
 import com.dmag.carscape.core.designsystem.theme.RoadGray
 import com.dmag.carscape.core.designsystem.theme.RoadGrayLight
+import com.dmag.carscape.core.designsystem.theme.VehicleColors
 import com.dmag.carscape.domain.model.Board
 import com.dmag.carscape.domain.model.Orientation
 
@@ -52,19 +53,20 @@ fun BoardCanvas(
 
             // Exit gate markers
             board.exits.forEach { exit ->
+                val gateColor = exit.colorIndex?.let { VehicleColors[it % VehicleColors.size] } ?: ExitGlow
                 val thickness = cell * 0.15f
 
                 if (exit.orientation == Orientation.HORIZONTAL) {
                     val x = if (exit.cell.col == 0) 0f else size.width - thickness
                     drawRect(
-                        color = ExitGlow,
+                        color = gateColor,
                         topLeft = Offset(x, exit.cell.row * cell),
                         size = Size(thickness, cell)
                     )
                 } else {
                     val y = if (exit.cell.row == 0) 0f else size.height - thickness
                     drawRect(
-                        color = ExitGlow,
+                        color = gateColor,
                         topLeft = Offset(exit.cell.col * cell, y),
                         size = Size(cell, thickness)
                     )

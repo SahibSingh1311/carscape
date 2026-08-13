@@ -2,9 +2,11 @@ package com.dmag.carscape.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.dmag.carscape.feature.game.GameScreen
 import com.dmag.carscape.feature.home.HomeScreen
 
@@ -31,7 +33,8 @@ fun CarScapeNavHost(
                 onInventoryClick = { navController.navigate(Routes.INVENTORY) }
             )
         }
-        composable(Routes.GAME) {
+        composable(route = Routes.GAME,
+            arguments = listOf(navArgument("mode") {type = NavType.StringType})) {
             // mode argument available here later if GameViewModel needs to branch on it
             GameScreen(
                 onNavigateHome = { navController.popBackStack() }

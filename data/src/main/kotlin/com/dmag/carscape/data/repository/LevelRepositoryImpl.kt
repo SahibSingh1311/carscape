@@ -6,6 +6,7 @@ import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.data.mapper.toDomain
 import com.dmag.carscape.data.model.LevelDto
 import com.dmag.carscape.domain.model.Board
+import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
@@ -19,23 +20,32 @@ class LevelRepositoryImpl @Inject constructor(
     private val dispatchers: DispatcherProvider
 ) : LevelRepository {
 
-    override suspend fun getLevel(levelNumber: Int): Board = withContext(dispatchers.io) {
-        val snapshot = firestore.collection("levels")
+    private fun collectionFor(mode: GameMode): String = when (mode) {
+        GameMode.DAILY -> "levels_daily"
+        GameMode.TIMED -> "levels_timed"
+        GameMode.CASUAL -> "levels_casual"
+    }
+
+    override suspend fun getLevel(mode: GameMode, levelNumber: Int): Board = withContext(dispatchers.io) {
+        val snapshot = firestore.collection(collectionFor(mode))
             .document(levelNumber.toString())
             .get()
             .await()
 
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "Fetched level $levelNumber raw data: ${snapshot.data}")
+            Log.d(TAG, "Fetched ${mode.name} level $levelNumber raw data: ${snapshot.data}")
         }
 
         val dto = snapshot.toObject(LevelDto::class.java)
-            ?: throw NoSuchElementException("Level $levelNumber not found")
+            ?: run {
+                if(BuildConfig.DEBUG) Log.e(TAG, "${mode.name} level $levelNumber not found")
+                throw NoSuchElementException("Level $levelNumber not found")
+            }
 
         dto.toDomain()
     }
 
-    override suspend fun getLevelCount(): Int = withContext(dispatchers.io) {
-        firestore.collection("levels").get().await().size()
+    override suspend fun getLevelCount(mode: GameMode): Int = withContext(dispatchers.io) {
+        firestore.collection(collectionFor(mode)).get().await().size()
     }
 }

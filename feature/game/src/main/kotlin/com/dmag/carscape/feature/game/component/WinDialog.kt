@@ -19,7 +19,7 @@ import com.dmag.carscape.core.designsystem.theme.ExitGlow
 @Composable
 fun WinDialog(
     moves: Int,
-    onNextLevel: () -> Unit,
+    onNextLevel: (() -> Unit)?,
     onRetry: () -> Unit
 ) {
     Dialog(onDismissRequest = { /* force a choice, no dismiss-on-outside-tap */ }) {
@@ -37,9 +37,11 @@ fun WinDialog(
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Solved in $moves moves")
             Spacer(modifier = Modifier.height(20.dp))
-            CarScapeButton(text = "Next Level", onClick = onNextLevel)
-            Spacer(modifier = Modifier.height(8.dp))
-            CarScapeButton(text = "Retry", onClick = onRetry)
+            if (onNextLevel != null) {
+                CarScapeButton(text = "Next Level", onClick = onNextLevel)
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+            CarScapeButton(text = if (onNextLevel != null) "Retry" else "Back to Home", onClick = onRetry)
         }
     }
 }

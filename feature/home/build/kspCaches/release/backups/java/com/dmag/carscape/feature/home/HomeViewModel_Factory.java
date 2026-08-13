@@ -1,7 +1,9 @@
 package com.dmag.carscape.feature.home;
 
+import com.dmag.carscape.domain.repository.ProgressRepository;
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
@@ -23,20 +25,23 @@ import javax.annotation.processing.Generated;
     "nullness:initialization.field.uninitialized"
 })
 public final class HomeViewModel_Factory implements Factory<HomeViewModel> {
+  private final Provider<ProgressRepository> progressRepositoryProvider;
+
+  private HomeViewModel_Factory(Provider<ProgressRepository> progressRepositoryProvider) {
+    this.progressRepositoryProvider = progressRepositoryProvider;
+  }
+
   @Override
   public HomeViewModel get() {
-    return newInstance();
+    return newInstance(progressRepositoryProvider.get());
   }
 
-  public static HomeViewModel_Factory create() {
-    return InstanceHolder.INSTANCE;
+  public static HomeViewModel_Factory create(
+      Provider<ProgressRepository> progressRepositoryProvider) {
+    return new HomeViewModel_Factory(progressRepositoryProvider);
   }
 
-  public static HomeViewModel newInstance() {
-    return new HomeViewModel();
-  }
-
-  private static final class InstanceHolder {
-    static final HomeViewModel_Factory INSTANCE = new HomeViewModel_Factory();
+  public static HomeViewModel newInstance(ProgressRepository progressRepository) {
+    return new HomeViewModel(progressRepository);
   }
 }

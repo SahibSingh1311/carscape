@@ -24,5 +24,6 @@ data class LevelDto(
     val rows: Int = 0,
     val cols: Int = 0,
     val vehicles: List<VehicleDto> = emptyList(),
-    val exits: List<ExitDto> = emptyList()
+    val exits: List<ExitDto> = emptyList(),
+    val timeLimitSeconds: Int = 60
 )

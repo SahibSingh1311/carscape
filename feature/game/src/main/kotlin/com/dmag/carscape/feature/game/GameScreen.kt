@@ -18,6 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,8 +29,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.dmag.carscape.core.designsystem.component.CarScapeButton
+import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.feature.game.component.BoardCanvas
 import com.dmag.carscape.feature.game.component.PauseDialog
+import com.dmag.carscape.feature.game.component.TimeUpDialog
 import com.dmag.carscape.feature.game.component.VehicleBlock
 import com.dmag.carscape.feature.game.component.WinDialog
 
@@ -41,6 +45,10 @@ fun GameScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     var isPaused by remember { mutableStateOf(false) }
+
+    LaunchedEffect(isPaused) {
+        if(isPaused) viewModel.pauseTimer() else viewModel.resumeTimer()
+    }
 
     Scaffold(
         topBar = {
@@ -58,6 +66,9 @@ fun GameScreen(
                             horizontalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
                         ) {
                             Text("Level ${current.levelNumber}")
+                            if (current.mode == GameMode.TIMED && current.timeRemainingSeconds != null) {
+                                Text("⏱ ${current.timeRemainingSeconds}s")
+                            }
                             Text("Moves: ${current.moves}")
                         }
                     } else {
@@ -75,6 +86,25 @@ fun GameScreen(
         ) {
             when (val current = state) {
                 is GameUiState.Loading -> CircularProgressIndicator()
+
+                is GameUiState.TimeUp -> {
+                    TimeUpDialog(
+                        onRetry = { viewModel.loadLevel(current.levelNumber) },
+                        onHome = onNavigateHome
+                    )
+                }
+
+                is GameUiState.DailyLocked -> {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("You've completed today's challenge!")
+                        Text("Come back tomorrow")
+                        Spacer(modifier = Modifier.padding(8.dp))
+                        CarScapeButton(
+                            text = "Back to Home",
+                            onClick = onNavigateHome
+                        )
+                    }
+                }
 
                 is GameUiState.NoMoreLevels -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -107,11 +137,19 @@ fun GameScreen(
                             }
                         }
                         if (current.isSolved) {
-                            WinDialog(
-                                moves = current.moves,
-                                onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
-                                onRetry = { viewModel.loadLevel(current.levelNumber) }
-                            )
+                            if (current.mode == GameMode.DAILY) {
+                                WinDialog(
+                                    moves = current.moves,
+                                    onNextLevel = null,  // no next level for Daily — locked until tomorrow
+                                    onRetry = onNavigateHome  // repurpose as the single available action: back to Home
+                                )
+                            } else {
+                                WinDialog(
+                                    moves = current.moves,
+                                    onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
+                                    onRetry = { viewModel.loadLevel(current.levelNumber) }
+                                )
+                            }
                         }
 
                         if (isPaused) {

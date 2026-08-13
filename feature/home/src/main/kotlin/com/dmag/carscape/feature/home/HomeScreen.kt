@@ -21,11 +21,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.dmag.carscape.core.designsystem.theme.SurfaceDark
+import com.dmag.carscape.domain.model.GameMode
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -34,8 +39,12 @@ fun HomeScreen(
     onMarketplaceClick: () -> Unit,
     onInventoryClick: () -> Unit,
     coins: Int = 0,      // placeholder until wallet system exists
-    hearts: Int = 5       // placeholder until hearts system exists
+    hearts: Int = 5,       // placeholder until hearts system exists
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+
+    val state by viewModel.uiState.collectAsState()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -84,24 +93,37 @@ fun HomeScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
         ) {
-            ModeCard(mode = GameMode.DAILY, onClick = { onModeSelected(GameMode.DAILY) })
-            ModeCard(mode = GameMode.TIMED, onClick = { onModeSelected(GameMode.TIMED) })
-            ModeCard(mode = GameMode.CASUAL, onClick = { onModeSelected(GameMode.CASUAL) })
+            ModeCard(
+                title = "Daily Challenge",
+                subtitle = if (state.isDailyLocked) "Next in ${state.dailyCountdownText}" else "One new puzzle every day",
+                enabled = !state.isDailyLocked,
+                onClick = { onModeSelected(GameMode.DAILY) })
+            ModeCard(
+                title = "Timed Mode",
+                subtitle = "Race the clock, earn coins",
+                enabled = true,
+                onClick = { onModeSelected(GameMode.TIMED) })
+            ModeCard(
+                title = "Casual Mode",
+                subtitle = "No timer, no pressure",
+                enabled = true,
+                onClick = { onModeSelected(GameMode.CASUAL) })
         }
     }
 }
 
 @Composable
-private fun ModeCard(mode: GameMode, onClick: () -> Unit) {
+private fun ModeCard(title: String, subtitle: String, enabled: Boolean,onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
             .background(SurfaceDark)
-            .clickable(onClick = onClick)
+            .alpha(if (enabled) 1f else 0.5f)
+            .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
             .padding(20.dp)
     ) {
-        Text(text = mode.displayName)
-        Text(text = mode.description)
+        Text(text = title)
+        Text(text = subtitle)
     }
 }

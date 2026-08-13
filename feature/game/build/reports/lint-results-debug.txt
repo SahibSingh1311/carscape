@@ -1,0 +1,32 @@
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt:171: Warning: No need to call super.onCleared; the super method is defined to be empty [EmptySuperCall]
+        super.onCleared()
+              ~~~~~~~~~
+
+   Explanation for issues of type "EmptySuperCall":
+   For methods annotated with @EmptySuper, overriding methods should not also
+   call the super implementation, either because it is empty, or perhaps it
+   contains code not intended to be run when the method is overridden.
+
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\BoardCanvas.kt:32: Hint: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
+    var boardWidthPx by remember { mutableStateOf(0f) }
+                                   ~~~~~~~~~~~~~~
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\VehicleBlock.kt:46: Hint: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
+    var dragOffsetPx by remember(vehicle.head) { mutableStateOf(0f) }
+                                                 ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AutoboxingStateCreation":
+   Calling mutableStateOf<T>() when T is either backed by a primitive type on
+   the JVM or is a value class results in a state implementation that requires
+   all state values to be boxed. This usually causes an additional allocation
+   for each state write, and adds some additional work to auto-unbox values
+   when reading the value of the state. Instead, prefer to use a specialized
+   primitive state implementation for Int, Long, Float, and Double when the
+   state does not need to track null values and does not override the default
+   SnapshotMutationPolicy. See mutableIntStateOf(), mutableLongStateOf(),
+   mutableFloatStateOf(), and mutableDoubleStateOf() for more information.
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.runtime
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
+0 errors, 1 warning, 2 hints

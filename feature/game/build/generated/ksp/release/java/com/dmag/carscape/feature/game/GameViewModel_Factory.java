@@ -1,5 +1,6 @@
 package com.dmag.carscape.feature.game;
 
+import androidx.lifecycle.SavedStateHandle;
 import com.dmag.carscape.core.common.DispatcherProvider;
 import com.dmag.carscape.domain.repository.LevelRepository;
 import com.dmag.carscape.domain.repository.ProgressRepository;
@@ -30,6 +31,8 @@ import javax.annotation.processing.Generated;
     "nullness:initialization.field.uninitialized"
 })
 public final class GameViewModel_Factory implements Factory<GameViewModel> {
+  private final Provider<SavedStateHandle> savedStateHandleProvider;
+
   private final Provider<LevelRepository> levelRepositoryProvider;
 
   private final Provider<ProgressRepository> progressRepositoryProvider;
@@ -42,12 +45,14 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   private final Provider<DispatcherProvider> dispatchersProvider;
 
-  private GameViewModel_Factory(Provider<LevelRepository> levelRepositoryProvider,
+  private GameViewModel_Factory(Provider<SavedStateHandle> savedStateHandleProvider,
+      Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
       Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<GameSoundPlayer> soundPlayerProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
+    this.savedStateHandleProvider = savedStateHandleProvider;
     this.levelRepositoryProvider = levelRepositoryProvider;
     this.progressRepositoryProvider = progressRepositoryProvider;
     this.moveVehicleProvider = moveVehicleProvider;
@@ -58,22 +63,23 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   @Override
   public GameViewModel get() {
-    return newInstance(levelRepositoryProvider.get(), progressRepositoryProvider.get(), moveVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
+    return newInstance(savedStateHandleProvider.get(), levelRepositoryProvider.get(), progressRepositoryProvider.get(), moveVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
   }
 
-  public static GameViewModel_Factory create(Provider<LevelRepository> levelRepositoryProvider,
+  public static GameViewModel_Factory create(Provider<SavedStateHandle> savedStateHandleProvider,
+      Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
       Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<GameSoundPlayer> soundPlayerProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    return new GameViewModel_Factory(levelRepositoryProvider, progressRepositoryProvider, moveVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
+    return new GameViewModel_Factory(savedStateHandleProvider, levelRepositoryProvider, progressRepositoryProvider, moveVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
   }
 
-  public static GameViewModel newInstance(LevelRepository levelRepository,
-      ProgressRepository progressRepository, MoveVehicleUseCase moveVehicle,
-      GetValidSlideDistanceUseCase getValidSlideDistance, GameSoundPlayer soundPlayer,
-      DispatcherProvider dispatchers) {
-    return new GameViewModel(levelRepository, progressRepository, moveVehicle, getValidSlideDistance, soundPlayer, dispatchers);
+  public static GameViewModel newInstance(SavedStateHandle savedStateHandle,
+      LevelRepository levelRepository, ProgressRepository progressRepository,
+      MoveVehicleUseCase moveVehicle, GetValidSlideDistanceUseCase getValidSlideDistance,
+      GameSoundPlayer soundPlayer, DispatcherProvider dispatchers) {
+    return new GameViewModel(savedStateHandle, levelRepository, progressRepository, moveVehicle, getValidSlideDistance, soundPlayer, dispatchers);
   }
 }

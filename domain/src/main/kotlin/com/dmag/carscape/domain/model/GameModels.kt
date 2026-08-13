@@ -27,7 +27,8 @@ data class Board(
     val rows: Int,
     val cols: Int,
     val vehicles: List<Vehicle> = emptyList(),
-    val exits: List<ExitGate> = emptyList()
+    val exits: List<ExitGate> = emptyList(),
+    val timeLimitSeconds: Int = 60
 )
 
 data class GameState(

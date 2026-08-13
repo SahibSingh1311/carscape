@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "com.dmag.carscape.feature.home-release-46:/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "com.dmag.carscape.feature.home-release-46:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "com.dmag.carscape.feature.home-release-46:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "com.dmag.carscape.feature.home-release-46:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "com.dmag.carscape.feature.home-release-46:/drawable-xhdpi-v4/notification_bg_normal.9.png",
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/drawable-xhdpi-v4/notification_bg_normal.9.png"
+    }
+]
