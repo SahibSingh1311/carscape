@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.dmag.carscape.data-release-17:/values-kk/values-kk.xml",
+            "outputFile": "com.dmag.carscape.data-mergeReleaseResources-20:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\cf0561d292a72243a134e3842111e1a6\\workspace\\transformed\\core-1.8.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\8329e3aac0db84ced4a7f79da298d0cf\\workspace\\transformed\\core-1.8.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -13,15 +13,15 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "26",
                         "startColumns": "4",
-                        "startOffsets": "2272",
+                        "startOffsets": "2919",
                         "endColumns": "100",
-                        "endOffsets": "2368"
+                        "endOffsets": "3015"
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\2a26a2fdf26e73a31dd211a311e6f232\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-kk\\values.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\870475e2aaf162d0aae167f7027fdc82\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-kk\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -30,15 +30,15 @@
                         "endOffsets": "291,440,562,664,800,922,1041,1146,1307,1409,1562,1687,1836,1989,2048,2103,2177"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startLines": "4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,311,437,543,683,809,932,1205,1370,1476,1633,1762,1915,2072,2135,2194",
+                        "startOffsets": "285,388,541,667,773,913,1039,1162,1435,1600,1706,1863,1992,2145,2302,2365,2424",
                         "endColumns": "102,152,125,105,139,125,122,108,164,105,156,128,152,156,62,58,77",
-                        "endOffsets": "153,306,432,538,678,804,927,1036,1365,1471,1628,1757,1910,2067,2130,2189,2267"
+                        "endOffsets": "383,536,662,768,908,1034,1157,1266,1595,1701,1858,1987,2140,2297,2360,2419,2497"
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a25ca00cfc0d0bb4a276533936b1a2cb\\workspace\\transformed\\play-services-basement-18.3.0\\res\\values-kk\\values.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\4772f72b0d09fc66f67ad77e285a52cc\\workspace\\transformed\\play-services-basement-18.4.0\\res\\values-kk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -47,20 +47,47 @@
                         "endOffsets": "354"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "12",
                         "startColumns": "4",
-                        "startOffsets": "1041",
+                        "startOffsets": "1271",
                         "endColumns": "163",
-                        "endOffsets": "1200"
+                        "endOffsets": "1430"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a6f5de3af411723b9b4ded5ffe9a7d08\\workspace\\transformed\\browser-1.4.0\\res\\values-kk\\values-kk.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,155,259,367",
+                        "endColumns": "99,103,107,104",
+                        "endOffsets": "150,254,362,467"
+                    },
+                    "to": {
+                        "startLines": "22,23,24,25",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2502,2602,2706,2814",
+                        "endColumns": "99,103,107,104",
+                        "endOffsets": "2597,2701,2809,2914"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\95ec65d0c307ca1c1445ddedad60d371\\workspace\\transformed\\credentials-1.2.0-rc01\\res\\values-kk\\values-kk.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,168",
+                        "endColumns": "112,116",
+                        "endOffsets": "163,280"
                     }
                 }
             ]
         },
         {
-            "outputFile": "com.dmag.carscape.data-mergeReleaseResources-15:/values-kk/values-kk.xml",
+            "outputFile": "com.dmag.carscape.data-release-22:/values-kk/values-kk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\cf0561d292a72243a134e3842111e1a6\\workspace\\transformed\\core-1.8.0\\res\\values-kk\\values-kk.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\8329e3aac0db84ced4a7f79da298d0cf\\workspace\\transformed\\core-1.8.0\\res\\values-kk\\values-kk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -69,15 +96,15 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "26",
                         "startColumns": "4",
-                        "startOffsets": "2272",
+                        "startOffsets": "2919",
                         "endColumns": "100",
-                        "endOffsets": "2368"
+                        "endOffsets": "3015"
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\2a26a2fdf26e73a31dd211a311e6f232\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-kk\\values.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\870475e2aaf162d0aae167f7027fdc82\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-kk\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -86,15 +113,15 @@
                         "endOffsets": "291,440,562,664,800,922,1041,1146,1307,1409,1562,1687,1836,1989,2048,2103,2177"
                     },
                     "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startLines": "4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,311,437,543,683,809,932,1205,1370,1476,1633,1762,1915,2072,2135,2194",
+                        "startOffsets": "285,388,541,667,773,913,1039,1162,1435,1600,1706,1863,1992,2145,2302,2365,2424",
                         "endColumns": "102,152,125,105,139,125,122,108,164,105,156,128,152,156,62,58,77",
-                        "endOffsets": "153,306,432,538,678,804,927,1036,1365,1471,1628,1757,1910,2067,2130,2189,2267"
+                        "endOffsets": "383,536,662,768,908,1034,1157,1266,1595,1701,1858,1987,2140,2297,2360,2419,2497"
                     }
                 },
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a25ca00cfc0d0bb4a276533936b1a2cb\\workspace\\transformed\\play-services-basement-18.3.0\\res\\values-kk\\values.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\4772f72b0d09fc66f67ad77e285a52cc\\workspace\\transformed\\play-services-basement-18.4.0\\res\\values-kk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -103,11 +130,38 @@
                         "endOffsets": "354"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "12",
                         "startColumns": "4",
-                        "startOffsets": "1041",
+                        "startOffsets": "1271",
                         "endColumns": "163",
-                        "endOffsets": "1200"
+                        "endOffsets": "1430"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a6f5de3af411723b9b4ded5ffe9a7d08\\workspace\\transformed\\browser-1.4.0\\res\\values-kk\\values-kk.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,155,259,367",
+                        "endColumns": "99,103,107,104",
+                        "endOffsets": "150,254,362,467"
+                    },
+                    "to": {
+                        "startLines": "22,23,24,25",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2502,2602,2706,2814",
+                        "endColumns": "99,103,107,104",
+                        "endOffsets": "2597,2701,2809,2914"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\95ec65d0c307ca1c1445ddedad60d371\\workspace\\transformed\\credentials-1.2.0-rc01\\res\\values-kk\\values-kk.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,168",
+                        "endColumns": "112,116",
+                        "endOffsets": "163,280"
                     }
                 }
             ]

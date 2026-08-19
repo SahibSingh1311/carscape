@@ -13,7 +13,7 @@
         errorLine2="              ~~~~~~~~~">
         <location
             file="D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt"
-            line="171"
+            line="176"
             column="15"/>
     </issue>
 

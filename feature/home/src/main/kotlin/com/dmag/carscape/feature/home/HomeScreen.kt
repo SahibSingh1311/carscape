@@ -38,8 +38,6 @@ fun HomeScreen(
     onModeSelected: (GameMode) -> Unit,
     onMarketplaceClick: () -> Unit,
     onInventoryClick: () -> Unit,
-    coins: Int = 0,      // placeholder until wallet system exists
-    hearts: Int = 5,       // placeholder until hearts system exists
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -55,10 +53,10 @@ fun HomeScreen(
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Filled.Favorite, contentDescription = "Hearts")
-                            Text(" $hearts")
+                            Text(" ${state.hearts}")
                         }
                         Text("CarScape")
-                        Text("🪙 $coins")
+                        Text("🪙 ${state.coins}")
                     }
                 }
             )

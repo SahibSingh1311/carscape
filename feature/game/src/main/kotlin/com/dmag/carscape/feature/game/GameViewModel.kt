@@ -10,6 +10,7 @@ import com.dmag.carscape.domain.model.Orientation
 import com.dmag.carscape.domain.model.Vehicle
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.repository.WalletRepository
 import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase
 import com.dmag.carscape.domain.usecase.SlideDirection
@@ -29,6 +30,7 @@ class GameViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val levelRepository: LevelRepository,
     private val progressRepository: ProgressRepository,
+    private val walletRepository: WalletRepository,
     private val moveVehicle: MoveVehicleUseCase,
     private val getValidSlideDistance: GetValidSlideDistanceUseCase,
     private val soundPlayer: GameSoundPlayer,
@@ -160,6 +162,9 @@ class GameViewModel @Inject constructor(
                     progressRepository.setLastDailyCompletionEpochDay(DailyChallenge.todayEpochDay())
                 } else {
                     progressRepository.setUnlockedLevel(mode, currentLevelNumber + 1)
+                }
+                if (mode == GameMode.TIMED || mode == GameMode.DAILY) {
+                    walletRepository.addCoins(updated.board.coinReward)
                 }
             }
         }

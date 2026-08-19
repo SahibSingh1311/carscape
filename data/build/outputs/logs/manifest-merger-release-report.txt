@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml:2:13-83
-INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml:2:13-83
+ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml:2:13-83
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml:2:13-83
 	package
-		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml
 	xmlns:android
-		ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml:2:23-81
+		ADDED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml:2:23-81
 uses-sdk
-INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml reason: use-sdk injection requested
-INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml
-INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml reason: use-sdk injection requested
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml
+INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml
 	android:targetSdkVersion
-		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml
 	android:minSdkVersion
-		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest8435837101888276682.xml
+		INJECTED from D:\CarScape\data\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest16377370252005360915.xml

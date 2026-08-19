@@ -13,12 +13,12 @@
             priority="0"/>
         <location
             file="${:data*projectDir}/build.gradle.kts"
-            line="39"
+            line="40"
             column="20"
-            startOffset="934"
-            endLine="39"
+            startOffset="977"
+            endLine="40"
             endColumn="82"
-            endOffset="996"/>
+            endOffset="1039"/>
     </incident>
 
     <incident
@@ -26,49 +26,49 @@
         severity="warning"
         message="Use version catalog instead">
         <fix-composite
-            description="Replace with new library catalog declaration for jetbrains-kotlinx-coroutines-play-services"
+            description="Replace with new library catalog declaration for org-jetbrains-kotlinx-kotlinx-coroutines-play-services2"
             robot="true">
             <fix-replace
-                description="Replace with kotlinxCoroutinesPlayServicesVersion = &quot;1.9.0&quot;..."
+                description="Replace with jetbrainsKotlinxCoroutinesPlayServicesVersion = &quot;1.9.0&quot;..."
                 robot="true"
                 oldString="_lint_insert_begin_"
-                replacement="kotlinxCoroutinesPlayServicesVersion = &quot;1.9.0&quot;&#xA;"
+                replacement="jetbrainsKotlinxCoroutinesPlayServicesVersion = &quot;1.9.0&quot;&#xA;"
                 priority="0">
                 <range
                     file="../gradle/libs.versions.toml"
-                    startOffset="107"
-                    endOffset="107"/>
+                    startOffset="44"
+                    endOffset="44"/>
             </fix-replace>
             <fix-replace
-                description="Replace with jetbrains-kotlinx-coroutines-play-services = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-play-services&quot;, version.ref = &quot;kotlinxCoroutinesPlayServicesVersion&quot; }..."
+                description="Replace with org-jetbrains-kotlinx-kotlinx-coroutines-play-services2 = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-play-services&quot;, version.ref = &quot;jetbrainsKotlinxCoroutinesPlayServicesVersion&quot; }..."
                 robot="true"
                 oldString="_lint_insert_begin_"
-                replacement="jetbrains-kotlinx-coroutines-play-services = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-play-services&quot;, version.ref = &quot;kotlinxCoroutinesPlayServicesVersion&quot; }&#xA;"
+                replacement="org-jetbrains-kotlinx-kotlinx-coroutines-play-services2 = { module = &quot;org.jetbrains.kotlinx:kotlinx-coroutines-play-services&quot;, version.ref = &quot;jetbrainsKotlinxCoroutinesPlayServicesVersion&quot; }&#xA;"
                 priority="0">
                 <range
                     file="../gradle/libs.versions.toml"
-                    startOffset="687"
-                    endOffset="687"/>
+                    startOffset="3701"
+                    endOffset="3701"/>
             </fix-replace>
             <fix-replace
-                description="Replace with libs.jetbrains.kotlinx.coroutines.play.services"
+                description="Replace with libs.org.jetbrains.kotlinx.kotlinx.coroutines.play.services2"
                 robot="true"
-                replacement="libs.jetbrains.kotlinx.coroutines.play.services"
+                replacement="libs.org.jetbrains.kotlinx.kotlinx.coroutines.play.services2"
                 priority="0">
                 <range
                     file="${:data*projectDir}/build.gradle.kts"
-                    startOffset="934"
-                    endOffset="996"/>
+                    startOffset="977"
+                    endOffset="1039"/>
             </fix-replace>
         </fix-composite>
         <location
             file="${:data*projectDir}/build.gradle.kts"
-            line="39"
+            line="40"
             column="20"
-            startOffset="934"
-            endLine="39"
+            startOffset="977"
+            endLine="40"
             endColumn="82"
-            endOffset="996"/>
+            endOffset="1039"/>
     </incident>
 
 </incidents>

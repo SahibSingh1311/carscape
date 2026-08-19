@@ -1,4 +1,4 @@
-D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt:171: Warning: No need to call super.onCleared; the super method is defined to be empty [EmptySuperCall]
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt:176: Warning: No need to call super.onCleared; the super method is defined to be empty [EmptySuperCall]
         super.onCleared()
               ~~~~~~~~~
 

@@ -1,14 +1,14 @@
 [
     {
-        "merged": "com.dmag.carscape.data-release-17:/color/common_google_signin_btn_text_dark.xml",
-        "source": "com.dmag.carscape.data-play-services-base-18.0.1-2:/color/common_google_signin_btn_text_dark.xml"
+        "merged": "com.dmag.carscape.data-release-22:/color/common_google_signin_btn_tint.xml",
+        "source": "com.dmag.carscape.data-play-services-base-18.0.1-13:/color/common_google_signin_btn_tint.xml"
     },
     {
-        "merged": "com.dmag.carscape.data-release-17:/color/common_google_signin_btn_text_light.xml",
-        "source": "com.dmag.carscape.data-play-services-base-18.0.1-2:/color/common_google_signin_btn_text_light.xml"
+        "merged": "com.dmag.carscape.data-release-22:/color/common_google_signin_btn_text_light.xml",
+        "source": "com.dmag.carscape.data-play-services-base-18.0.1-13:/color/common_google_signin_btn_text_light.xml"
     },
     {
-        "merged": "com.dmag.carscape.data-release-17:/color/common_google_signin_btn_tint.xml",
-        "source": "com.dmag.carscape.data-play-services-base-18.0.1-2:/color/common_google_signin_btn_tint.xml"
+        "merged": "com.dmag.carscape.data-release-22:/color/common_google_signin_btn_text_dark.xml",
+        "source": "com.dmag.carscape.data-play-services-base-18.0.1-13:/color/common_google_signin_btn_text_dark.xml"
     }
 ]

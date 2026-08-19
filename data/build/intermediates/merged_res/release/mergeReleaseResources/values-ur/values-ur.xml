@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"پاس ورڈ"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"پاس کی"</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">فعال کریں</string>
     <string msgid="227660514972886228" name="common_google_play_services_enable_text">‏جب تک آپ Google Play سروسز فعال نہیں کر لیتے، %1$s کام نہیں کرے گی۔</string>
     <string msgid="5122002158466380389" name="common_google_play_services_enable_title">‏Google Play سروسز فعال کریں</string>
@@ -18,5 +20,9 @@
     <string name="common_open_on_phone">فون پر کھولیں</string>
     <string name="common_signin_button_text">سائن ان کریں</string>
     <string name="common_signin_button_text_long">‏Google کے ساتھ سائن ان کریں</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"لنک کلپ بورڈ پر کاپی ہو گیا"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"لنک کاپی کریں"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"براؤزر میں کھولیں"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"لنک کا اشتراک کریں"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"+999"</string>
 </resources>

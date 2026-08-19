@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle;
 import com.dmag.carscape.core.common.DispatcherProvider;
 import com.dmag.carscape.domain.repository.LevelRepository;
 import com.dmag.carscape.domain.repository.ProgressRepository;
+import com.dmag.carscape.domain.repository.WalletRepository;
 import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase;
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase;
 import com.dmag.carscape.feature.game.audio.GameSoundPlayer;
@@ -37,6 +38,8 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   private final Provider<ProgressRepository> progressRepositoryProvider;
 
+  private final Provider<WalletRepository> walletRepositoryProvider;
+
   private final Provider<MoveVehicleUseCase> moveVehicleProvider;
 
   private final Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider;
@@ -48,6 +51,7 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
   private GameViewModel_Factory(Provider<SavedStateHandle> savedStateHandleProvider,
       Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
+      Provider<WalletRepository> walletRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
       Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<GameSoundPlayer> soundPlayerProvider,
@@ -55,6 +59,7 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
     this.savedStateHandleProvider = savedStateHandleProvider;
     this.levelRepositoryProvider = levelRepositoryProvider;
     this.progressRepositoryProvider = progressRepositoryProvider;
+    this.walletRepositoryProvider = walletRepositoryProvider;
     this.moveVehicleProvider = moveVehicleProvider;
     this.getValidSlideDistanceProvider = getValidSlideDistanceProvider;
     this.soundPlayerProvider = soundPlayerProvider;
@@ -63,23 +68,25 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   @Override
   public GameViewModel get() {
-    return newInstance(savedStateHandleProvider.get(), levelRepositoryProvider.get(), progressRepositoryProvider.get(), moveVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
+    return newInstance(savedStateHandleProvider.get(), levelRepositoryProvider.get(), progressRepositoryProvider.get(), walletRepositoryProvider.get(), moveVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
   }
 
   public static GameViewModel_Factory create(Provider<SavedStateHandle> savedStateHandleProvider,
       Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
+      Provider<WalletRepository> walletRepositoryProvider,
       Provider<MoveVehicleUseCase> moveVehicleProvider,
       Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<GameSoundPlayer> soundPlayerProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    return new GameViewModel_Factory(savedStateHandleProvider, levelRepositoryProvider, progressRepositoryProvider, moveVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
+    return new GameViewModel_Factory(savedStateHandleProvider, levelRepositoryProvider, progressRepositoryProvider, walletRepositoryProvider, moveVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
   }
 
   public static GameViewModel newInstance(SavedStateHandle savedStateHandle,
       LevelRepository levelRepository, ProgressRepository progressRepository,
-      MoveVehicleUseCase moveVehicle, GetValidSlideDistanceUseCase getValidSlideDistance,
-      GameSoundPlayer soundPlayer, DispatcherProvider dispatchers) {
-    return new GameViewModel(savedStateHandle, levelRepository, progressRepository, moveVehicle, getValidSlideDistance, soundPlayer, dispatchers);
+      WalletRepository walletRepository, MoveVehicleUseCase moveVehicle,
+      GetValidSlideDistanceUseCase getValidSlideDistance, GameSoundPlayer soundPlayer,
+      DispatcherProvider dispatchers) {
+    return new GameViewModel(savedStateHandle, levelRepository, progressRepository, walletRepository, moveVehicle, getValidSlideDistance, soundPlayer, dispatchers);
   }
 }

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-xxxhdpi-v4/ic_password.png",
+        "source": "com.dmag.carscape.data-credentials-1.2.0-rc01-15:/drawable-xxxhdpi-v4/ic_password.png"
+    },
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-xxxhdpi-v4/ic_other_sign_in.png",
+        "source": "com.dmag.carscape.data-credentials-1.2.0-rc01-15:/drawable-xxxhdpi-v4/ic_other_sign_in.png"
+    },
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-xxxhdpi-v4/ic_passkey.png",
+        "source": "com.dmag.carscape.data-credentials-1.2.0-rc01-15:/drawable-xxxhdpi-v4/ic_passkey.png"
+    }
+]

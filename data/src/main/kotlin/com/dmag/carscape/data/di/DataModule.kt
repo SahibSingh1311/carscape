@@ -6,10 +6,15 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.dmag.carscape.core.common.DefaultDispatcherProvider
 import com.dmag.carscape.core.common.DispatcherProvider
+import com.dmag.carscape.data.repository.AuthRepositoryImpl
 import com.dmag.carscape.data.repository.LevelRepositoryImpl
 import com.dmag.carscape.data.repository.ProgressRepositoryImpl
+import com.dmag.carscape.data.repository.WalletRepositoryImpl
+import com.dmag.carscape.domain.repository.AuthRepository
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.repository.WalletRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Binds
 import dagger.Module
@@ -36,6 +41,10 @@ object DataStoreModule {
     @Provides
     @Singleton
     fun provideFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 }
 
 @Module
@@ -48,4 +57,12 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindProgressRepository(impl: ProgressRepositoryImpl): ProgressRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWalletRepository(impl: WalletRepositoryImpl): WalletRepository
 }

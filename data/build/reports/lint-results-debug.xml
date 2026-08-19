@@ -13,7 +13,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\CarScape\data\build.gradle.kts"
-            line="39"
+            line="40"
             column="20"/>
     </issue>
 
@@ -29,7 +29,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\CarScape\data\build.gradle.kts"
-            line="39"
+            line="40"
             column="20"/>
     </issue>
 

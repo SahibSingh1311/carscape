@@ -1,4 +1,4 @@
-D:\CarScape\data\build.gradle.kts:39: Warning: A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-play-services than 1.9.0 is available: 1.11.0 [NewerVersionAvailable]
+D:\CarScape\data\build.gradle.kts:40: Warning: A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-play-services than 1.9.0 is available: 1.11.0 [NewerVersionAvailable]
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -10,7 +10,7 @@ D:\CarScape\data\build.gradle.kts:39: Warning: A newer version of org.jetbrains.
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-D:\CarScape\data\build.gradle.kts:39: Warning: Use version catalog instead [UseTomlInstead]
+D:\CarScape\data\build.gradle.kts:40: Warning: Use version catalog instead [UseTomlInstead]
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

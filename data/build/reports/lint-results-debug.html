@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 2 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Aug 13 16:10:51 IST 2026 by AGP (9.1.1)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Tue Aug 18 15:15:33 IST 2026 by AGP (9.1.1)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -231,13 +231,13 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:39</span>: <span class="message">A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-play-services than 1.9.0 is available: 1.11.0</span><br /><pre class="errorlines">
-<span class="lineno"> 36 </span>
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:40</span>: <span class="message">A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-play-services than 1.9.0 is available: 1.11.0</span><br /><pre class="errorlines">
 <span class="lineno"> 37 </span>    implementation(platform(libs.firebase.bom))
 <span class="lineno"> 38 </span>    implementation(libs.firebase.firestore.ktx)
-<span class="caretline"><span class="lineno"> 39 </span>    implementation(<span class="warning">"org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 40 </span>
-<span class="lineno"> 41 </span>}</pre>
+<span class="lineno"> 39 </span>    implementation(libs.firebase.auth.ktx)
+<span class="caretline"><span class="lineno"> 40 </span>    implementation(<span class="warning">"org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 41 </span>
+<span class="lineno"> 42 </span>}</pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationNewerVersionAvailable" style="display: none;">
@@ -277,13 +277,13 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:39</span>: <span class="message">Use version catalog instead</span><br /><pre class="errorlines">
-<span class="lineno"> 36 </span>
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:40</span>: <span class="message">Use version catalog instead</span><br /><pre class="errorlines">
 <span class="lineno"> 37 </span>    implementation(platform(libs.firebase.bom))
 <span class="lineno"> 38 </span>    implementation(libs.firebase.firestore.ktx)
-<span class="caretline"><span class="lineno"> 39 </span>    implementation(<span class="warning">"org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 40 </span>
-<span class="lineno"> 41 </span>}</pre>
+<span class="lineno"> 39 </span>    implementation(libs.firebase.auth.ktx)
+<span class="caretline"><span class="lineno"> 40 </span>    implementation(<span class="warning">"org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 41 </span>
+<span class="lineno"> 42 </span>}</pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationUseTomlInstead" style="display: none;">

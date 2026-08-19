@@ -11,6 +11,7 @@ fun LevelDto.toDomain(): Board = Board(
     rows = rows,
     cols = cols,
     timeLimitSeconds = timeLimitSeconds,
+    coinReward = coinReward,
     vehicles = vehicles.map { dto ->
         Vehicle(
             id = dto.id,

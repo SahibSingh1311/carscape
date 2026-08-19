@@ -1,6 +1,6 @@
 [
     {
-        "merged": "com.dmag.carscape.data-release-17:/raw/firebase_common_keep.xml",
-        "source": "com.dmag.carscape.data-firebase-common-21.0.0-9:/raw/firebase_common_keep.xml"
+        "merged": "com.dmag.carscape.data-release-22:/raw/firebase_common_keep.xml",
+        "source": "com.dmag.carscape.data-firebase-common-21.0.0-11:/raw/firebase_common_keep.xml"
     }
 ]

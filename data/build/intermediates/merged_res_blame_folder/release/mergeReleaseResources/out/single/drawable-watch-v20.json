@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-watch-v20/common_google_signin_btn_text_disabled.xml",
+        "source": "com.dmag.carscape.data-play-services-auth-20.7.0-10:/drawable-watch-v20/common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml",
+        "source": "com.dmag.carscape.data-play-services-auth-20.7.0-10:/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "com.dmag.carscape.data-release-22:/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml",
+        "source": "com.dmag.carscape.data-play-services-auth-20.7.0-10:/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml"
+    }
+]

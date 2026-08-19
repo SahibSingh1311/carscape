@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml:2:13-83
-INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml:2:13-83
+ADDED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml:2:13-83
+INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml:2:13-83
 	package
-		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml
+		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml
 	xmlns:android
-		ADDED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml:2:23-81
+		ADDED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml:2:23-81
 uses-sdk
-INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml reason: use-sdk injection requested
-INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml
-INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml
+INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml reason: use-sdk injection requested
+INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml
+INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml
 	android:targetSdkVersion
-		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml
+		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml
 	android:minSdkVersion
-		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8973003741975295519.xml
+		INJECTED from D:\CarScape\core\designsystem\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13152824452868886607.xml

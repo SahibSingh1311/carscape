@@ -1,44 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.dmag.carscape.data-release-17:/values-zu/values-zu.xml",
+            "outputFile": "com.dmag.carscape.data-mergeReleaseResources-20:/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\2a26a2fdf26e73a31dd211a311e6f232\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-zu\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,300,472,603,703,867,992,1112,1218,1374,1480,1641,1768,1922,2075,2132,2197",
-                        "endColumns": "106,171,130,99,163,124,119,105,155,105,160,126,153,152,56,64,80",
-                        "endOffsets": "299,471,602,702,866,991,1111,1217,1373,1479,1640,1767,1921,2074,2131,2196,2277"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,166,342,477,581,749,878,1002,1244,1404,1514,1679,1810,1968,2125,2186,2255",
-                        "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
-                        "endOffsets": "161,337,472,576,744,873,997,1107,1399,1509,1674,1805,1963,2120,2181,2250,2335"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a25ca00cfc0d0bb4a276533936b1a2cb\\workspace\\transformed\\play-services-basement-18.3.0\\res\\values-zu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "127",
-                        "endOffsets": "322"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1112",
-                        "endColumns": "131",
-                        "endOffsets": "1239"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\cf0561d292a72243a134e3842111e1a6\\workspace\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\8329e3aac0db84ced4a7f79da298d0cf\\workspace\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -47,54 +13,81 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "26",
                         "startColumns": "4",
-                        "startOffsets": "2340",
+                        "startOffsets": "3021",
                         "endColumns": "100",
-                        "endOffsets": "2436"
+                        "endOffsets": "3117"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a6f5de3af411723b9b4ded5ffe9a7d08\\workspace\\transformed\\browser-1.4.0\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,167,275,387",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "162,270,382,494"
+                    },
+                    "to": {
+                        "startLines": "22,23,24,25",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2577,2689,2797,2909",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "2684,2792,2904,3016"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\870475e2aaf162d0aae167f7027fdc82\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,300,472,603,703,867,992,1112,1218,1374,1480,1641,1768,1922,2075,2132,2197",
+                        "endColumns": "106,171,130,99,163,124,119,105,155,105,160,126,153,152,56,64,80",
+                        "endOffsets": "299,471,602,702,866,991,1111,1217,1373,1479,1640,1767,1921,2074,2131,2196,2277"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "292,403,579,714,818,986,1115,1239,1481,1641,1751,1916,2047,2205,2362,2423,2492",
+                        "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
+                        "endOffsets": "398,574,709,813,981,1110,1234,1344,1636,1746,1911,2042,2200,2357,2418,2487,2572"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\4772f72b0d09fc66f67ad77e285a52cc\\workspace\\transformed\\play-services-basement-18.4.0\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "127",
+                        "endOffsets": "322"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1349",
+                        "endColumns": "131",
+                        "endOffsets": "1476"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\95ec65d0c307ca1c1445ddedad60d371\\workspace\\transformed\\credentials-1.2.0-rc01\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,169",
+                        "endColumns": "113,122",
+                        "endOffsets": "164,287"
                     }
                 }
             ]
         },
         {
-            "outputFile": "com.dmag.carscape.data-mergeReleaseResources-15:/values-zu/values-zu.xml",
+            "outputFile": "com.dmag.carscape.data-release-22:/values-zu/values-zu.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\2a26a2fdf26e73a31dd211a311e6f232\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-zu\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,300,472,603,703,867,992,1112,1218,1374,1480,1641,1768,1922,2075,2132,2197",
-                        "endColumns": "106,171,130,99,163,124,119,105,155,105,160,126,153,152,56,64,80",
-                        "endOffsets": "299,471,602,702,866,991,1111,1217,1373,1479,1640,1767,1921,2074,2131,2196,2277"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,166,342,477,581,749,878,1002,1244,1404,1514,1679,1810,1968,2125,2186,2255",
-                        "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
-                        "endOffsets": "161,337,472,576,744,873,997,1107,1399,1509,1674,1805,1963,2120,2181,2250,2335"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a25ca00cfc0d0bb4a276533936b1a2cb\\workspace\\transformed\\play-services-basement-18.3.0\\res\\values-zu\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "127",
-                        "endOffsets": "322"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1112",
-                        "endColumns": "131",
-                        "endOffsets": "1239"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\cf0561d292a72243a134e3842111e1a6\\workspace\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\8329e3aac0db84ced4a7f79da298d0cf\\workspace\\transformed\\core-1.8.0\\res\\values-zu\\values-zu.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -103,11 +96,72 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "26",
                         "startColumns": "4",
-                        "startOffsets": "2340",
+                        "startOffsets": "3021",
                         "endColumns": "100",
-                        "endOffsets": "2436"
+                        "endOffsets": "3117"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\a6f5de3af411723b9b4ded5ffe9a7d08\\workspace\\transformed\\browser-1.4.0\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,167,275,387",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "162,270,382,494"
+                    },
+                    "to": {
+                        "startLines": "22,23,24,25",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "2577,2689,2797,2909",
+                        "endColumns": "111,107,111,111",
+                        "endOffsets": "2684,2792,2904,3016"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\870475e2aaf162d0aae167f7027fdc82\\workspace\\transformed\\play-services-base-18.0.1\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,300,472,603,703,867,992,1112,1218,1374,1480,1641,1768,1922,2075,2132,2197",
+                        "endColumns": "106,171,130,99,163,124,119,105,155,105,160,126,153,152,56,64,80",
+                        "endOffsets": "299,471,602,702,866,991,1111,1217,1373,1479,1640,1767,1921,2074,2131,2196,2277"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "292,403,579,714,818,986,1115,1239,1481,1641,1751,1916,2047,2205,2362,2423,2492",
+                        "endColumns": "110,175,134,103,167,128,123,109,159,109,164,130,157,156,60,68,84",
+                        "endOffsets": "398,574,709,813,981,1110,1234,1344,1636,1746,1911,2042,2200,2357,2418,2487,2572"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\4772f72b0d09fc66f67ad77e285a52cc\\workspace\\transformed\\play-services-basement-18.4.0\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "127",
+                        "endOffsets": "322"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1349",
+                        "endColumns": "131",
+                        "endOffsets": "1476"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\95ec65d0c307ca1c1445ddedad60d371\\workspace\\transformed\\credentials-1.2.0-rc01\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,169",
+                        "endColumns": "113,122",
+                        "endOffsets": "164,287"
                     }
                 }
             ]

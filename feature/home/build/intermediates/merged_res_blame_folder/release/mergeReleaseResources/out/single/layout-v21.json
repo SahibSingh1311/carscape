@@ -1,18 +1,18 @@
 [
     {
         "merged": "com.dmag.carscape.feature.home-release-46:/layout-v21/notification_template_custom_big.xml",
-        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/layout-v21/notification_template_custom_big.xml"
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-27:/layout-v21/notification_template_custom_big.xml"
     },
     {
         "merged": "com.dmag.carscape.feature.home-release-46:/layout-v21/notification_template_icon_group.xml",
-        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/layout-v21/notification_template_icon_group.xml"
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-27:/layout-v21/notification_template_icon_group.xml"
     },
     {
         "merged": "com.dmag.carscape.feature.home-release-46:/layout-v21/notification_action.xml",
-        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/layout-v21/notification_action.xml"
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-27:/layout-v21/notification_action.xml"
     },
     {
         "merged": "com.dmag.carscape.feature.home-release-46:/layout-v21/notification_action_tombstone.xml",
-        "source": "com.dmag.carscape.feature.home-core-1.16.0-9:/layout-v21/notification_action_tombstone.xml"
+        "source": "com.dmag.carscape.feature.home-core-1.16.0-27:/layout-v21/notification_action_tombstone.xml"
     }
 ]

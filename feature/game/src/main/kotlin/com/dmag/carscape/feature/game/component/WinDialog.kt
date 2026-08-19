@@ -19,6 +19,7 @@ import com.dmag.carscape.core.designsystem.theme.ExitGlow
 @Composable
 fun WinDialog(
     moves: Int,
+    coinsEarned: Int? = null,
     onNextLevel: (() -> Unit)?,
     onRetry: () -> Unit
 ) {
@@ -36,6 +37,9 @@ fun WinDialog(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "Solved in $moves moves")
+            if (coinsEarned != null) {
+                Text(text = "🪙 +$coinsEarned coins")
+            }
             Spacer(modifier = Modifier.height(20.dp))
             if (onNextLevel != null) {
                 CarScapeButton(text = "Next Level", onClick = onNextLevel)

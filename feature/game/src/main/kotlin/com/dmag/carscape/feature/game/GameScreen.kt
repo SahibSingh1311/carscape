@@ -140,12 +140,14 @@ fun GameScreen(
                             if (current.mode == GameMode.DAILY) {
                                 WinDialog(
                                     moves = current.moves,
+                                    coinsEarned = current.board.coinReward,
                                     onNextLevel = null,  // no next level for Daily — locked until tomorrow
                                     onRetry = onNavigateHome  // repurpose as the single available action: back to Home
                                 )
                             } else {
                                 WinDialog(
                                     moves = current.moves,
+                                    coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
                                     onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
                                     onRetry = { viewModel.loadLevel(current.levelNumber) }
                                 )
