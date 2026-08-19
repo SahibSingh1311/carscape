@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 1 warning and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 2 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Tue Aug 18 15:15:38 IST 2026 by AGP (9.1.1)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Aug 19 15:09:40 IST 2026 by AGP (9.1.1)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -187,6 +187,7 @@ document.getElementById(id).style.display = 'none';
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
       <a class="mdl-navigation__link" href="#EmptySuperCall"><i class="material-icons warning-icon">warning</i>Calling an empty super method (1)</a>
+      <a class="mdl-navigation__link" href="#ModifierParameter"><i class="material-icons warning-icon">warning</i>Guidelines for Modifier parameters in a Composable function (1)</a>
       <a class="mdl-navigation__link" href="#AutoboxingStateCreation"><i class="material-icons warning-icon">warning</i><code>State&lt;T></code> will autobox values assigned to this state. Use a specialized state type instead. (2)</a>
     </nav>
   </div>
@@ -205,6 +206,9 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#EmptySuperCall">EmptySuperCall</a>: Calling an empty super method</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#ModifierParameter">ModifierParameter</a>: Guidelines for Modifier parameters in a Composable function</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
 </td></tr>
 <tr>
@@ -231,13 +235,13 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/kotlin/com/dmag/carscape/feature/game/GameViewModel.kt">../../src/main/kotlin/com/dmag/carscape/feature/game/GameViewModel.kt</a>:176</span>: <span class="message">No need to call <code>super.onCleared</code>; the super method is defined to be empty</span><br /><pre class="errorlines">
-<span class="lineno"> 173 </span>    override <span class="keyword">fun</span> onCleared() {
-<span class="lineno"> 174 </span>        timerJob?.cancel()
-<span class="lineno"> 175 </span>        soundPlayer.release()
-<span class="caretline"><span class="lineno"> 176 </span>        <span class="keyword">super</span>.<span class="warning">onCleared</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 177 </span>    }
-<span class="lineno"> 178 </span>}
+<span class="location"><a href="../../src/main/kotlin/com/dmag/carscape/feature/game/GameViewModel.kt">../../src/main/kotlin/com/dmag/carscape/feature/game/GameViewModel.kt</a>:273</span>: <span class="message">No need to call <code>super.onCleared</code>; the super method is defined to be empty</span><br /><pre class="errorlines">
+<span class="lineno"> 270 </span>    override <span class="keyword">fun</span> onCleared() {
+<span class="lineno"> 271 </span>        timerJob?.cancel()
+<span class="lineno"> 272 </span>        soundPlayer.release()
+<span class="caretline"><span class="lineno"> 273 </span>        <span class="keyword">super</span>.<span class="warning">onCleared</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 274 </span>    }
+<span class="lineno"> 275 </span>}
 </pre>
 
 </div>
@@ -266,6 +270,59 @@ For methods annotated with <code>@EmptySuper</code>, overriding methods should n
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="EmptySuperCallCardLink" onclick="hideid('EmptySuperCallCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="ModifierParameter"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ModifierParameterCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Guidelines for Modifier parameters in a Composable function</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt">../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt</a>:35</span>: <span class="message">Modifier parameter should be the first optional parameter</span><br /><pre class="errorlines">
+<span class="lineno"> 32 </span>    maxBackwardCells: Int,  <span class="comment">// legal cells in the LEFT (horizontal) or UP (vertical) direction</span>
+<span class="lineno"> 33 </span>    onDragCommitted: (cellsMoved: Int) -> Unit,
+<span class="lineno"> 34 </span>    onTap: () -> Unit = {},
+<span class="caretline"><span class="lineno"> 35 </span>    <span class="warning">modifier</span>: Modifier = Modifier&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 36 </span>) {
+<span class="lineno"> 37 </span>    <span class="keyword">val</span> isHorizontal = vehicle.orientation == Orientation.HORIZONTAL
+<span class="lineno"> 38 </span>    <span class="keyword">val</span> widthCells = <span class="keyword">if</span> (isHorizontal) vehicle.length <span class="keyword">else</span> <span class="number">1</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationModifierParameter" style="display: none;">
+The first (or only) Modifier parameter in a Composable function should follow the following rules:<br/>
+- Be named <code>modifier</code><br/>
+- Have a type of <code>Modifier</code><br/>
+- Either have no default value, or have a default value of <code>Modifier</code><br/>
+- If optional, be the first optional parameter in the parameter list<br/>To suppress this error, use the issue id "ModifierParameter" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="vendor">
+Vendor: Jetpack Compose<br/>
+Identifier: androidx.compose.ui<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=612128">https://issuetracker.google.com/issues/new?component=612128</a><br/>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">ModifierParameter</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationModifierParameterLink" onclick="reveal('explanationModifierParameter');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ModifierParameterCardLink" onclick="hideid('ModifierParameterCard');">
+Dismiss</button>            </div>
+            </div>
           </section>
 <a name="Performance"></a>
 <a name="AutoboxingStateCreation"></a>
@@ -287,14 +344,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 35 </span>    Box(
 </pre>
 
-<span class="location"><a href="../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt">../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt</a>:46</span>: <span class="message">Prefer <code>mutableFloatStateOf</code> instead of <code>mutableStateOf</code></span><br /><pre class="errorlines">
-<span class="lineno"> 43 </span>    <span class="keyword">val</span> padding = cellSizeDp * <span class="number">0.08f</span>
-<span class="lineno"> 44 </span>
-<span class="lineno"> 45 </span>    <span class="comment">// Live drag offset in pixels, along the vehicle's locked axis only</span>
-<span class="caretline"><span class="lineno"> 46 </span>    <span class="keyword">var</span> dragOffsetPx by remember(vehicle.head) { <span class="warning">mutableStateOf</span>(<span class="number">0f</span>) }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 47 </span>
-<span class="lineno"> 48 </span>    <span class="keyword">val</span> maxForwardPx = maxForwardCells * cellSizePx
-<span class="lineno"> 49 </span>    <span class="keyword">val</span> maxBackwardPx = -maxBackwardCells * cellSizePx
+<span class="location"><a href="../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt">../../src/main/kotlin/com/dmag/carscape/feature/game/component/VehicleBlock.kt</a>:48</span>: <span class="message">Prefer <code>mutableFloatStateOf</code> instead of <code>mutableStateOf</code></span><br /><pre class="errorlines">
+<span class="lineno"> 45 </span>    <span class="keyword">val</span> padding = cellSizeDp * <span class="number">0.08f</span>
+<span class="lineno"> 46 </span>
+<span class="lineno"> 47 </span>    <span class="comment">// Live drag offset in pixels, along the vehicle's locked axis only</span>
+<span class="caretline"><span class="lineno"> 48 </span>    <span class="keyword">var</span> dragOffsetPx by remember(vehicle.head) { <span class="warning">mutableStateOf</span>(<span class="number">0f</span>) }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 49 </span>
+<span class="lineno"> 50 </span>    <span class="keyword">val</span> maxForwardPx = maxForwardCells * cellSizePx
+<span class="lineno"> 51 </span>    <span class="keyword">val</span> maxBackwardPx = -maxBackwardCells * cellSizePx
 </pre>
 
 </div>

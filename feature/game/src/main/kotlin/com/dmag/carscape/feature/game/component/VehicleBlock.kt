@@ -2,6 +2,7 @@ package com.dmag.carscape.feature.game.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
@@ -30,6 +31,7 @@ fun VehicleBlock(
     maxForwardCells: Int,   // legal cells in the RIGHT (horizontal) or DOWN (vertical) direction
     maxBackwardCells: Int,  // legal cells in the LEFT (horizontal) or UP (vertical) direction
     onDragCommitted: (cellsMoved: Int) -> Unit,
+    onTap: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val isHorizontal = vehicle.orientation == Orientation.HORIZONTAL
@@ -59,6 +61,9 @@ fun VehicleBlock(
             .size(width - padding * 2, height - padding * 2)
             .clip(RoundedCornerShape(cellSizeDp * 0.2f))
             .background(VehicleColors[vehicle.colorIndex % VehicleColors.size])
+            .pointerInput(vehicle.id) {
+                detectTapGestures(onTap = { onTap() })
+            }
             .pointerInput(vehicle.id, maxForwardCells, maxBackwardCells) {
                 detectDragGestures(
                     onDrag = { change, dragAmount ->

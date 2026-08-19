@@ -33,6 +33,7 @@ import com.dmag.carscape.core.designsystem.component.CarScapeButton
 import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.feature.game.component.BoardCanvas
 import com.dmag.carscape.feature.game.component.PauseDialog
+import com.dmag.carscape.feature.game.component.PowerUpBar
 import com.dmag.carscape.feature.game.component.TimeUpDialog
 import com.dmag.carscape.feature.game.component.VehicleBlock
 import com.dmag.carscape.feature.game.component.WinDialog
@@ -119,51 +120,71 @@ fun GameScreen(
                 }
 
                 is GameUiState.Success -> {
-                    Box(modifier = Modifier.padding(16.dp)) {
-                        BoardCanvas(board = current.board) { cellSizePx ->
-                            val cellSizeDp = with(LocalDensity.current) { cellSizePx.toDp() }
-                            current.board.vehicles.forEach { vehicle ->
-                                val bounds = viewModel.getDragBounds(vehicle)
-                                VehicleBlock(
-                                    vehicle = vehicle,
-                                    cellSizeDp = cellSizeDp,
-                                    cellSizePx = cellSizePx,
-                                    maxForwardCells = bounds.maxForwardCells,
-                                    maxBackwardCells = bounds.maxBackwardCells,
-                                    onDragCommitted = { cellsMoved ->
-                                        viewModel.onVehicleDragged(vehicle.id, cellsMoved)
-                                    }
-                                )
-                            }
-                        }
-                        if (current.isSolved) {
-                            if (current.mode == GameMode.DAILY) {
-                                WinDialog(
-                                    moves = current.moves,
-                                    coinsEarned = current.board.coinReward,
-                                    onNextLevel = null,  // no next level for Daily — locked until tomorrow
-                                    onRetry = onNavigateHome  // repurpose as the single available action: back to Home
-                                )
-                            } else {
-                                WinDialog(
-                                    moves = current.moves,
-                                    coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
-                                    onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
-                                    onRetry = { viewModel.loadLevel(current.levelNumber) }
-                                )
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Box(modifier = Modifier.padding(16.dp)) {
+                            BoardCanvas(board = current.board) { cellSizePx ->
+                                val cellSizeDp = with(LocalDensity.current) { cellSizePx.toDp() }
+                                current.board.vehicles.forEach { vehicle ->
+                                    val bounds = viewModel.getDragBounds(vehicle)
+                                    VehicleBlock(
+                                        vehicle = vehicle,
+                                        cellSizeDp = cellSizeDp,
+                                        cellSizePx = cellSizePx,
+                                        maxForwardCells = bounds.maxForwardCells,
+                                        maxBackwardCells = bounds.maxBackwardCells,
+                                        onDragCommitted = { cellsMoved ->
+                                            viewModel.onVehicleDragged(vehicle.id, cellsMoved)
+                                        },
+                                        onTap = { viewModel.onVehicleTapped(vehicle.id) }
+                                    )
+                                }
                             }
                         }
 
-                        if (isPaused) {
-                            PauseDialog(
-                                onResume = { isPaused = false },
-                                onRestart = {
-                                    isPaused = false
-                                    viewModel.loadLevel(current.levelNumber)
-                                },
-                                onHome = onNavigateHome
+                        if (com.dmag.carscape.feature.game.BuildConfig.DEBUG) {
+                            com.dmag.carscape.core.designsystem.component.CarScapeButton(
+                                text = "DEBUG: +3 all powerups",
+                                onClick = { viewModel.debugGrantPowerUps() }
                             )
                         }
+
+                        PowerUpBar(
+                            powerUps = current.powerUps,
+                            mode = current.mode,
+                            isHammerModeActive = current.isHammerModeActive,
+                            onHammerClick = { viewModel.toggleHammerMode() },
+                            onFreezeClick = { viewModel.useFreeze() },
+                            onAddTimeClick = { viewModel.useAddTime() }
+                        )
+
+                            if (current.isSolved) {
+                                if (current.mode == GameMode.DAILY) {
+                                    WinDialog(
+                                        moves = current.moves,
+                                        coinsEarned = current.board.coinReward,
+                                        onNextLevel = null,  // no next level for Daily — locked until tomorrow
+                                        onRetry = onNavigateHome  // repurpose as the single available action: back to Home
+                                    )
+                                } else {
+                                    WinDialog(
+                                        moves = current.moves,
+                                        coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
+                                        onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
+                                        onRetry = { viewModel.loadLevel(current.levelNumber) }
+                                    )
+                                }
+                            }
+
+                            if (isPaused) {
+                                PauseDialog(
+                                    onResume = { isPaused = false },
+                                    onRestart = {
+                                        isPaused = false
+                                        viewModel.loadLevel(current.levelNumber)
+                                    },
+                                    onHome = onNavigateHome
+                                )
+                            }
                     }
                 }
             }

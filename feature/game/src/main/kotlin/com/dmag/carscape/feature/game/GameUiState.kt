@@ -2,6 +2,7 @@ package com.dmag.carscape.feature.game
 
 import com.dmag.carscape.domain.model.Board
 import com.dmag.carscape.domain.model.GameMode
+import com.dmag.carscape.domain.model.PowerUpInventory
 
 sealed interface GameUiState {
     data object Loading : GameUiState
@@ -12,7 +13,9 @@ sealed interface GameUiState {
         val isSolved: Boolean,
         val levelNumber: Int,
         val mode: GameMode,
-        val timeRemainingSeconds: Int?
+        val timeRemainingSeconds: Int?,
+        val powerUps: PowerUpInventory = PowerUpInventory(),
+        val isHammerModeActive: Boolean = false
     ) : GameUiState
 
     data class DailyLocked(val secondsRemaining: Long) : GameUiState

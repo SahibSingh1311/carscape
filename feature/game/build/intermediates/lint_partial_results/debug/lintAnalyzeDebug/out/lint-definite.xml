@@ -7,12 +7,26 @@
         message="No need to call `super.onCleared`; the super method is defined to be empty">
         <location
             file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/GameViewModel.kt"
-            line="176"
+            line="273"
             column="15"
-            startOffset="6726"
-            endLine="176"
+            startOffset="10329"
+            endLine="273"
             endColumn="24"
-            endOffset="6735"/>
+            endOffset="10338"/>
+    </incident>
+
+    <incident
+        id="ModifierParameter"
+        severity="warning"
+        message="Modifier parameter should be the first optional parameter">
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
+            line="35"
+            column="5"
+            startOffset="1446"
+            endLine="35"
+            endColumn="13"
+            endOffset="1454"/>
     </incident>
 
     <incident
@@ -50,17 +64,17 @@
             priority="0">
             <range
                 file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
-                startOffset="1928"
-                endOffset="1942"/>
+                startOffset="2018"
+                endOffset="2032"/>
         </fix-replace>
         <location
             file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
-            line="46"
+            line="48"
             column="50"
-            startOffset="1928"
-            endLine="46"
+            startOffset="2018"
+            endLine="48"
             endColumn="64"
-            endOffset="1942"/>
+            endOffset="2032"/>
     </incident>
 
 </incidents>

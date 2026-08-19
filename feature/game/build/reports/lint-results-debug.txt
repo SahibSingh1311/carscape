@@ -1,4 +1,4 @@
-D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt:176: Warning: No need to call super.onCleared; the super method is defined to be empty [EmptySuperCall]
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameViewModel.kt:273: Warning: No need to call super.onCleared; the super method is defined to be empty [EmptySuperCall]
         super.onCleared()
               ~~~~~~~~~
 
@@ -7,10 +7,26 @@ D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\GameView
    call the super implementation, either because it is empty, or perhaps it
    contains code not intended to be run when the method is overridden.
 
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\VehicleBlock.kt:35: Warning: Modifier parameter should be the first optional parameter [ModifierParameter from androidx.compose.ui]
+    modifier: Modifier = Modifier
+    ~~~~~~~~
+
+   Explanation for issues of type "ModifierParameter":
+   The first (or only) Modifier parameter in a Composable function should
+   follow the following rules:
+   - Be named modifier
+   - Have a type of Modifier
+   - Either have no default value, or have a default value of Modifier
+   - If optional, be the first optional parameter in the parameter list
+
+   Vendor: Jetpack Compose
+   Identifier: androidx.compose.ui
+   Feedback: https://issuetracker.google.com/issues/new?component=612128
+
 D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\BoardCanvas.kt:32: Hint: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
     var boardWidthPx by remember { mutableStateOf(0f) }
                                    ~~~~~~~~~~~~~~
-D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\VehicleBlock.kt:46: Hint: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
+D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\component\VehicleBlock.kt:48: Hint: Prefer mutableFloatStateOf instead of mutableStateOf [AutoboxingStateCreation from androidx.compose.runtime]
     var dragOffsetPx by remember(vehicle.head) { mutableStateOf(0f) }
                                                  ~~~~~~~~~~~~~~
 
@@ -29,4 +45,4 @@ D:\CarScape\feature\game\src\main\kotlin\com\dmag\carscape\feature\game\componen
    Identifier: androidx.compose.runtime
    Feedback: https://issuetracker.google.com/issues/new?component=612128
 
-0 errors, 1 warning, 2 hints
+0 errors, 2 warnings, 2 hints
