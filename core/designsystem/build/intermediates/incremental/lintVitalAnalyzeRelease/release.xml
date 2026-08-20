@@ -6,7 +6,7 @@
     mergedManifest="build\intermediates\merged_manifest\release\processReleaseManifest\AndroidManifest.xml"
     proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-9.1.1"
     partialResultsDir="build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
-    desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c5ef952e7a1394e2a745ecccffbcf81e\workspace\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\765541a7e6f148663f14f1a90bb987a6\workspace\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures/>
   <sourceProviders>
     <sourceProvider
@@ -25,6 +25,6 @@
       type="MAIN"
       applicationId="com.dmag.carscape.core.designsystem"
       generatedSourceFolders="build\generated\ap_generated_sources\release\out"
-      desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c5ef952e7a1394e2a745ecccffbcf81e\workspace\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\765541a7e6f148663f14f1a90bb987a6\workspace\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

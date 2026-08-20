@@ -6,7 +6,7 @@
     debuggable="true"
     mergedManifest="build\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml"
     partialResultsDir="build\intermediates\android_test_lint_partial_results\debug\lintAnalyzeDebugAndroidTest\out"
-    desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c5ef952e7a1394e2a745ecccffbcf81e\workspace\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\765541a7e6f148663f14f1a90bb987a6\workspace\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures/>
   <sourceProviders>
   </sourceProviders>
@@ -24,6 +24,6 @@
   <artifact
       type="INSTRUMENTATION_TEST"
       applicationId="com.dmag.carscape.core.designsystem.test"
-      desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c5ef952e7a1394e2a745ecccffbcf81e\workspace\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\765541a7e6f148663f14f1a90bb987a6\workspace\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

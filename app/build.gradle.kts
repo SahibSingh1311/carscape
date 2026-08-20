@@ -60,9 +60,11 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.config.ktx)
 
     implementation(project(":domain"))
     implementation(project(":data"))

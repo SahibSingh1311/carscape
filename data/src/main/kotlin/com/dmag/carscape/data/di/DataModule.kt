@@ -8,14 +8,17 @@ import com.dmag.carscape.core.common.DefaultDispatcherProvider
 import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.data.repository.AuthRepositoryImpl
 import com.dmag.carscape.data.repository.LevelRepositoryImpl
+import com.dmag.carscape.data.repository.PricingRepositoryImpl
 import com.dmag.carscape.data.repository.ProgressRepositoryImpl
 import com.dmag.carscape.data.repository.WalletRepositoryImpl
 import com.dmag.carscape.domain.repository.AuthRepository
 import com.dmag.carscape.domain.repository.LevelRepository
+import com.dmag.carscape.domain.repository.PricingRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
 import com.dmag.carscape.domain.repository.WalletRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -45,6 +48,20 @@ object DataStoreModule {
     @Provides
     @Singleton
     fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideRemoteConfig(): FirebaseRemoteConfig {
+        val config = FirebaseRemoteConfig.getInstance()
+        config.setDefaultsAsync(
+            mapOf(
+                "price_hammer" to 50L,
+                "price_freeze" to 30L,
+                "price_add_time" to 20L
+            )
+        )
+        return config
+    }
 }
 
 @Module
@@ -65,4 +82,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindWalletRepository(impl: WalletRepositoryImpl): WalletRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPricingRepository(impl: PricingRepositoryImpl): PricingRepository
 }

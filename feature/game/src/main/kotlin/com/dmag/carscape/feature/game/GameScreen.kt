@@ -141,13 +141,6 @@ fun GameScreen(
                             }
                         }
 
-                        if (com.dmag.carscape.feature.game.BuildConfig.DEBUG) {
-                            com.dmag.carscape.core.designsystem.component.CarScapeButton(
-                                text = "DEBUG: +3 all powerups",
-                                onClick = { viewModel.debugGrantPowerUps() }
-                            )
-                        }
-
                         PowerUpBar(
                             powerUps = current.powerUps,
                             mode = current.mode,

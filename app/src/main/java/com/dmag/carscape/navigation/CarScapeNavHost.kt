@@ -23,14 +23,26 @@ private object Routes {
 fun CarScapeNavHost(
     navController: NavHostController = rememberNavController()
 ) {
+    // Shared by every bottom-nav tab (Home/Marketplace/Inventory) — prevents
+    // stacking duplicate destinations and keeps back-stack behavior sane.
+    fun navigateToTab(route: String) {
+        navController.navigate(route) {
+            popUpTo(Routes.HOME) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
     NavHost(navController = navController, startDestination = Routes.HOME) {
         composable(Routes.HOME) {
             HomeScreen(
                 onModeSelected = { mode ->
                     navController.navigate(Routes.game(mode.name))
                 },
-                onMarketplaceClick = { navController.navigate(Routes.MARKETPLACE) },
-                onInventoryClick = { navController.navigate(Routes.INVENTORY) }
+                onMarketplaceClick = { navigateToTab(Routes.MARKETPLACE) },
+                onInventoryClick = { navigateToTab(Routes.INVENTORY) }
             )
         }
         composable(route = Routes.GAME,
@@ -41,10 +53,16 @@ fun CarScapeNavHost(
             )
         }
         composable(Routes.MARKETPLACE) {
-            MarketplaceScreen()
+            MarketplaceScreen(
+                onInventoryClick = { navigateToTab(Routes.INVENTORY) },
+                onHomeClick = { navigateToTab(Routes.HOME) }
+            )
         }
         composable(Routes.INVENTORY) {
-            InventoryScreen()
+            InventoryScreen(
+                onMarketplaceClick = { navigateToTab(Routes.MARKETPLACE) },
+                onHomeClick = { navigateToTab(Routes.HOME) }
+            )
         }
     }
 }
