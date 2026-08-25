@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.analytics.ktx)
     implementation(libs.firebase.config.ktx)
+    implementation(libs.play.services.ads)
 
     implementation(project(":domain"))
     implementation(project(":data"))

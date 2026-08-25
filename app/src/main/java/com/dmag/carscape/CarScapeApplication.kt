@@ -18,9 +18,13 @@ class CarScapeApplication : Application() {
     private val appScope = CoroutineScope(SupervisorJob())
     override fun onCreate() {
         super.onCreate()
+
 //        if (BuildConfig.DEBUG) {
 //            FirebaseFirestore.setLoggingEnabled(true)
 //        }
+
+        com.google.android.gms.ads.MobileAds.initialize(this) {}
+
         appScope.launch {
             walletRepository.refreshHeartRegen()
             progressRepository.reconcileWithRemote()

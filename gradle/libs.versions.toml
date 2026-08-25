@@ -24,6 +24,8 @@ kotlinSerializationPlugin = "2.2.10"
 firebaseFirestoreKtx = "26.5.0"
 firebaseConfigKtx = "23.1.0"
 
+playServicesAds = "23.6.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -58,6 +60,7 @@ kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 google-firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 google-firebase-config-ktx = { group = "com.google.firebase", name = "firebase-config-ktx", version.ref = "firebaseConfigKtx" }
+play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

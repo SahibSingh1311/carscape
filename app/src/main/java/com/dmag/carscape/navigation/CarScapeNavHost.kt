@@ -1,5 +1,6 @@
 package com.dmag.carscape.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -7,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.dmag.carscape.ads.RewardedAdBubble
 import com.dmag.carscape.feature.game.GameScreen
 import com.dmag.carscape.feature.home.HomeScreen
 
@@ -42,7 +44,9 @@ fun CarScapeNavHost(
                     navController.navigate(Routes.game(mode.name))
                 },
                 onMarketplaceClick = { navigateToTab(Routes.MARKETPLACE) },
-                onInventoryClick = { navigateToTab(Routes.INVENTORY) }
+                onInventoryClick = { navigateToTab(Routes.INVENTORY) },
+                adBubble = {
+                    RewardedAdBubble() }
             )
         }
         composable(route = Routes.GAME,
