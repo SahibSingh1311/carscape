@@ -14,8 +14,6 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private const val TEST_REWARDED_AD_UNIT_ID = "ca-app-pub-3940256099942544/5224354917"
-
 @Singleton
 class RewardedAdRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context
@@ -35,7 +33,7 @@ class RewardedAdRepositoryImpl @Inject constructor(
         suspendCancellableCoroutine <Unit> { continuation ->
             RewardedAd.load(
                 context,
-                TEST_REWARDED_AD_UNIT_ID,
+                AdMobIds.REWARDED_AD_UNIT_ID,
                 AdRequest.Builder().build(),
                 object : RewardedAdLoadCallback() {
                     override fun onAdLoaded(ad: RewardedAd) {

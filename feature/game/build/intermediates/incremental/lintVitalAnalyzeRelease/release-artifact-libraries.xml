@@ -9,9 +9,9 @@
       resolved="::"/>
   <library
       name=":@@:core:designsystem::release"
-      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out\jars\libs\R.jar"
       resolved="Car Scape.core:designsystem:unspecified"
-      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out"
+      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

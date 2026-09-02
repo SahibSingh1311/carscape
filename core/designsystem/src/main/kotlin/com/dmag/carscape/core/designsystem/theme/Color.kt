@@ -2,21 +2,43 @@ package com.dmag.carscape.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Road/board surface
-val RoadGray = Color(0xFF2B2D31)
-val RoadGrayLight = Color(0xFF3A3D42)
+// Royal blue/purple background depth
+val RoyalDeep = Color(0xFF1B1140)
+val RoyalMid = Color(0xFF2E1E63)
+val RoyalLight = Color(0xFF4A2F8F)
 
-// Vehicle palette — indexed to match colorIndex in domain models
+// Wood-brown card surfaces (like CR's chest/card panels)
+val WoodDark = Color(0xFF5C3A21)
+val WoodMid = Color(0xFF7A4E2C)
+val WoodLight = Color(0xFF9C6839)
+
+// Gold accents — borders, currency, highlights
+val GoldBright = Color(0xFFFFD966)
+val GoldDeep = Color(0xFFE8A93B)
+
+// CTA / action colors
+val ActionRed = Color(0xFFE8433B)
+val ActionGreen = Color(0xFF4CC94F)
+
+val SurfaceCard = WoodMid
+val AsphaltDark = RoyalDeep
+val AsphaltMid = Color(0xFF35354F)   // board tile 1
+val AsphaltLight = Color(0xFF44446A) // board tile 2
+val OnSurfaceLight = Color(0xFFFCEFD8)
+val ExitGlow = ActionGreen
+val AccentOrange = ActionRed
+val AccentAmber = GoldBright
+
 val VehicleColors = listOf(
-    Color(0xFFE53935), // 0 red
-    Color(0xFF1E88E5), // 1 blue
-    Color(0xFF43A047), // 2 green
-    Color(0xFFFDD835), // 3 yellow
-    Color(0xFF8E24AA), // 4 purple
-    Color(0xFFFB8C00), // 5 orange
+    Color(0xFFE8433B), // red
+    Color(0xFF3E7FE0), // blue
+    Color(0xFF4CC94F), // green
+    Color(0xFFFFD966), // gold/yellow
+    Color(0xFFA855E0), // purple
+    Color(0xFFFF9640), // orange
 )
 
-val ExitGlow = Color(0xFF66FFB2)
-val BackgroundDark = Color(0xFF1A1B1E)
+val RoadGray = AsphaltMid
+val RoadGrayLight = AsphaltLight
 val SurfaceDark = Color(0xFF242629)
-val OnSurfaceLight = Color(0xFFECECEC)
+val BackgroundDark = AsphaltDark

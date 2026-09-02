@@ -1,15 +1,20 @@
 package com.dmag.carscape.feature.home
 
-import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -22,6 +27,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -29,9 +35,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import com.dmag.carscape.core.designsystem.theme.SurfaceDark
+import com.dmag.carscape.core.designsystem.component.BottomNavItem
+import com.dmag.carscape.core.designsystem.component.ChunkyButton
+import com.dmag.carscape.core.designsystem.component.GameBottomNavigation
+import com.dmag.carscape.core.designsystem.theme.CarScapeBackgroundBrush
+import com.dmag.carscape.core.designsystem.theme.GoldBright
+import com.dmag.carscape.core.designsystem.theme.GoldDeep
+import com.dmag.carscape.core.designsystem.theme.LuckiestGuy
+import com.dmag.carscape.core.designsystem.theme.OnSurfaceLight
+import com.dmag.carscape.core.designsystem.theme.WoodDark
+import com.dmag.carscape.core.designsystem.theme.WoodLight
 import com.dmag.carscape.domain.model.GameMode
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
@@ -46,90 +68,156 @@ fun HomeScreen(
 
     val state by viewModel.uiState.collectAsState()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Filled.Favorite, contentDescription = "Hearts")
-                            Text(" ${state.hearts}")
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = com.dmag.carscape.core.designsystem.R.drawable.background),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Black.copy(alpha = 0.25f),
+                            Color.Black.copy(alpha = 0.55f),
+                            Color.Black.copy(alpha = 0.80f)
+                        )
+                    )
+                )
+        )
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                    title = {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(end = 16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Row {
+                                Icon(Icons.Filled.Favorite, contentDescription = "Hearts")
+                                Text(text = " ${state.hearts}", fontFamily = LuckiestGuy)
+                            }
+                            Text(text = "CarScape", fontFamily = LuckiestGuy)
+                            Text(text = "🪙 ${state.coins}", fontFamily = LuckiestGuy)
                         }
-                        Text("CarScape")
-                        Text("🪙 ${state.coins}")
                     }
-                }
-            )
-        },
-        bottomBar = {
-            NavigationBar {
-                NavigationBarItem(
-                    selected = false,
-                    onClick = onMarketplaceClick,
-                    icon = { Icon(Icons.Filled.ShoppingCart, contentDescription = "Marketplace") },
-                    label = { Text("Marketplace") }
                 )
-                NavigationBarItem(
-                    selected = true,
-                    onClick = { /* already home */ },
-                    icon = { Icon(Icons.Filled.Home, contentDescription = "Play") },
-                    label = { Text("Play") }
+            },
+            bottomBar = {
+                GameBottomNavigation(
+                    selectedItem = BottomNavItem.Play, // Home screen = the Play tab
+                    onItemSelected = { item ->
+                        when (item) {
+                            BottomNavItem.Marketplace -> onMarketplaceClick()
+                            BottomNavItem.Inventory -> onInventoryClick()
+                            BottomNavItem.Play -> {} // already here, no-op
+                        }
+                    }
                 )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = onInventoryClick,
-                    icon = { Icon(Icons.Filled.Email, contentDescription = "Inventory") },
-                    label = { Text("Inventory") }
-                )
+//                NavigationBar {
+//                    NavigationBarItem(
+//                        selected = false,
+//                        onClick = onMarketplaceClick,
+//                        icon = {
+//                            Icon(
+//                                Icons.Filled.ShoppingCart,
+//                                contentDescription = "Marketplace"
+//                            )
+//                        },
+//                        label = { Text("Marketplace") }
+//                    )
+//                    NavigationBarItem(
+//                        selected = true,
+//                        onClick = { /* already home */ },
+//                        icon = { Icon(Icons.Filled.Home, contentDescription = "Play") },
+//                        label = { Text("Play") }
+//                    )
+//                    NavigationBarItem(
+//                        selected = false,
+//                        onClick = onInventoryClick,
+//                        icon = { Icon(Icons.Filled.Email, contentDescription = "Inventory") },
+//                        label = { Text("Inventory") }
+//                    )
+//                }
             }
-        }
-    ) { padding ->
-        Box(modifier = Modifier.fillMaxSize().padding(padding)) {
-            Column(
+        ) { padding ->
+            Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
-                    .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
             ) {
-                ModeCard(
-                    title = "Daily Challenge",
-                    subtitle = if (state.isDailyLocked) "Next in ${state.dailyCountdownText}" else "One new puzzle every day",
-                    enabled = !state.isDailyLocked,
-                    onClick = { onModeSelected(GameMode.DAILY) })
-                ModeCard(
-                    title = "Timed Mode",
-                    subtitle = "Race the clock, earn coins",
-                    enabled = true,
-                    onClick = { onModeSelected(GameMode.TIMED) })
-                ModeCard(
-                    title = "Casual Mode",
-                    subtitle = "No timer, no pressure",
-                    enabled = true,
-                    onClick = { onModeSelected(GameMode.CASUAL) })
-            }
-            Box(modifier = Modifier.align(Alignment.CenterStart)) {
-                adBubble()
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)
+                        .padding(48.dp),
+                    verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
+                ) {
+                    ChunkyButton(
+                        text = if (state.isDailyLocked) "DAILY" else "DAILY CHALLENGE",
+                        supportingText = if (state.isDailyLocked) "Next in ${state.dailyCountdownText}" else null,
+                        backgroundColor = Color(0xFF4CC94F),
+                        enabled = !state.isDailyLocked,
+                        onClick = { if (!state.isDailyLocked) onModeSelected(GameMode.DAILY) },
+                    )
+                    ChunkyButton(
+                        text = "TIMED MODE",
+                        backgroundColor = Color(0xFFFFC145),
+                        onClick = { onModeSelected(GameMode.TIMED) },
+                    )
+                    ChunkyButton(
+                        text = "CASUAL MODE",
+                        backgroundColor = Color(0xFF4FA3E0),
+                        onClick = { onModeSelected(GameMode.CASUAL) },
+                    )
+                }
+                Box(modifier = Modifier.align(Alignment.CenterStart)) {
+                    adBubble()
+                }
             }
         }
     }
 }
 
-@Composable
-private fun ModeCard(title: String, subtitle: String, enabled: Boolean,onClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(SurfaceDark)
-            .alpha(if (enabled) 1f else 0.5f)
-            .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
-            .padding(20.dp)
-    ) {
-        Text(text = title)
-        Text(text = subtitle)
-    }
-}
+//@Composable
+//private fun ModeCard(title: String, subtitle: String, emoji: String, enabled: Boolean, onClick: () -> Unit) {
+//    Row(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .shadow(elevation = if (enabled) 8.dp else 0.dp, shape = RoundedCornerShape(18.dp))
+//            .clip(RoundedCornerShape(18.dp))
+//            .background(Brush.verticalGradient(listOf(WoodLight, WoodDark)))
+//            .border(
+//                width = 3.dp,
+//                brush = Brush.verticalGradient(listOf(GoldBright, GoldDeep)),
+//                shape = RoundedCornerShape(18.dp)
+//            )
+//            .alpha(if (enabled) 1f else 0.45f)
+//            .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
+//            .padding(16.dp),
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Box(
+//            modifier = Modifier
+//                .size(52.dp)
+//                .clip(CircleShape)
+//                .background(Brush.radialGradient(listOf(GoldBright, GoldDeep))),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Text(text = emoji, fontSize = 26.sp)
+//        }
+//        Spacer(modifier = Modifier.width(16.dp))
+//        Column {
+//            Text(text = title, fontWeight = FontWeight.ExtraBold, fontSize = 18.sp, color = OnSurfaceLight)
+//            Text(text = subtitle, fontSize = 13.sp, color = OnSurfaceLight.copy(alpha = 0.75f))
+//        }
+//    }
+//}

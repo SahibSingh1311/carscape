@@ -1,7 +1,9 @@
 package com.dmag.carscape.marketplace
 
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dmag.carscape.core.designsystem.R
 import com.dmag.carscape.domain.model.PowerUpType
 import com.dmag.carscape.domain.model.Wallet
 import com.dmag.carscape.domain.repository.PricingRepository
@@ -17,7 +19,7 @@ import javax.inject.Inject
 data class MarketplaceItem(
     val type: PowerUpType,
     val label: String,
-    val emoji: String,
+    @DrawableRes val iconRes: Int,
     val price: Int
 )
 
@@ -46,9 +48,9 @@ class MarketplaceViewModel @Inject constructor(
 
         viewModelScope.launch {
             val items = listOf(
-                MarketplaceItem(PowerUpType.HAMMER, "Hammer", "🔨", pricingRepository.getPrice(PowerUpType.HAMMER)),
-                MarketplaceItem(PowerUpType.FREEZE, "Freeze", "❄️", pricingRepository.getPrice(PowerUpType.FREEZE)),
-                MarketplaceItem(PowerUpType.ADD_TIME, "Add Time", "⏱️", pricingRepository.getPrice(PowerUpType.ADD_TIME))
+                MarketplaceItem(PowerUpType.HAMMER, "Hammer", R.drawable.powerup_hammer, pricingRepository.getPrice(PowerUpType.HAMMER)),
+                MarketplaceItem(PowerUpType.FREEZE, "Freeze", R.drawable.powerup_freeze, pricingRepository.getPrice(PowerUpType.FREEZE)),
+                MarketplaceItem(PowerUpType.ADD_TIME, "Add Time", R.drawable.powerup_add_time, pricingRepository.getPrice(PowerUpType.ADD_TIME))
             )
             _uiState.update { it.copy(items = items, isLoading = false) }
         }

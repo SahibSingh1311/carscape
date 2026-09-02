@@ -4,12 +4,18 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Brush
+
+val CarScapeBackgroundBrush = Brush.verticalGradient(
+    colors = listOf(RoyalDeep, RoyalMid, RoyalDeep)
+)
 
 private val CarScapeColorScheme = darkColorScheme(
-    background = BackgroundDark,
-    surface = SurfaceDark,
+    background = RoyalDeep,
+    surface = SurfaceCard,
     onSurface = OnSurfaceLight,
-    primary = ExitGlow
+    primary = GoldBright,
+    secondary = ActionRed
 )
 
 @Composable
@@ -18,7 +24,7 @@ fun CarScapeTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colorScheme = CarScapeColorScheme, // dark-only for now — traffic games read better on dark backgrounds
+        colorScheme = CarScapeColorScheme,
         typography = CarScapeTypography,
         content = content
     )

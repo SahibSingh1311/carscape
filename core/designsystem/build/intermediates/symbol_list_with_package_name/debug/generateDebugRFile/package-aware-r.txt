@@ -1,1 +1,10 @@
 com.dmag.carscape.core.designsystem
+drawable background
+drawable ic_background
+drawable ic_inventory
+drawable ic_marketplace
+drawable ic_play
+drawable powerup_add_time
+drawable powerup_freeze
+drawable powerup_hammer
+font luckiest_guy_regular

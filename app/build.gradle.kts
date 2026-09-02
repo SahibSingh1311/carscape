@@ -18,12 +18,14 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+        manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713" // test, default
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-9693169126547036~8795747136" // real
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

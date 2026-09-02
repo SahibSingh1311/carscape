@@ -1,9 +1,9 @@
 <libraries>
   <library
       name=":@@:feature:home::debug"
-      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5d456be17efc4b046eb964530b36ff31\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5d456be17efc4b046eb964530b36ff31\workspace\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\108f536c97c09752581637dbf1f253a4\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\108f536c97c09752581637dbf1f253a4\workspace\transformed\out\jars\libs\R.jar"
       resolved="Car Scape.feature:home:unspecified"
-      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\5d456be17efc4b046eb964530b36ff31\workspace\transformed\out"
+      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\108f536c97c09752581637dbf1f253a4\workspace\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -14,9 +14,9 @@
       proguardRules="proguard.txt"/>
   <library
       name=":@@:core:designsystem::debug"
-      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out\jars\classes.jar;C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out\jars\libs\R.jar"
       resolved="Car Scape.core:designsystem:unspecified"
-      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\b96fea60bcbed8c84d72bba6628c4455\workspace\transformed\out"
+      folder="C:\Users\SAHIB\.gradle\caches\9.3.1\transforms\c45482967c836d601a2e9518a6da6172\workspace\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
