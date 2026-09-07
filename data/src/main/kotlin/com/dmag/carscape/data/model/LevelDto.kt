@@ -26,5 +26,8 @@ data class LevelDto(
     val vehicles: List<VehicleDto> = emptyList(),
     val exits: List<ExitDto> = emptyList(),
     val timeLimitSeconds: Int = 60,
-    val coinReward: Int = 10
+    val coinReward: Int = 10,
+    val difficulty: String = "NORMAL",
+    val diamondReward: Int = 0,
+    val optimalMoves: Int = 0
 )

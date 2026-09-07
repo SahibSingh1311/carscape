@@ -27,22 +27,27 @@ class LevelRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getLevel(mode: GameMode, levelNumber: Int): Board = withContext(dispatchers.io) {
-        val snapshot = firestore.collection(collectionFor(mode))
-            .document(levelNumber.toString())
-            .get()
-            .await()
+        try {
+            val snapshot = firestore.collection(collectionFor(mode))
+                .document(levelNumber.toString())
+                .get()
+                .await()
 
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG, "Fetched ${mode.name} level $levelNumber raw data: ${snapshot.data}")
-        }
-
-        val dto = snapshot.toObject(LevelDto::class.java)
-            ?: run {
-                if(BuildConfig.DEBUG) Log.e(TAG, "${mode.name} level $levelNumber not found")
-                throw NoSuchElementException("Level $levelNumber not found")
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "Fetched ${mode.name} level $levelNumber raw data: ${snapshot.data}")
             }
 
-        dto.toDomain()
+            val dto = snapshot.toObject(LevelDto::class.java)
+                ?: run {
+                    if (BuildConfig.DEBUG) Log.e(TAG, "${mode.name} level $levelNumber not found")
+                    throw NoSuchElementException("Level $levelNumber not found")
+                }
+
+            dto.toDomain()
+        } catch (e: Exception) {
+            if (BuildConfig.DEBUG) Log.e(TAG, "Failed to fetch level $levelNumber for $mode", e)
+            throw NoSuchElementException("Level $levelNumber not found for mode $mode")
+        }
     }
 
     override suspend fun getLevelCount(mode: GameMode): Int = withContext(dispatchers.io) {

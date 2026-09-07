@@ -20,8 +20,9 @@ import com.dmag.carscape.core.designsystem.theme.ExitGlow
 fun WinDialog(
     moves: Int,
     coinsEarned: Int? = null,
+    diamondsEarned: Int? = null,
     onNextLevel: (() -> Unit)?,
-    onRetry: () -> Unit
+    onRetry: (() -> Unit)?
 ) {
     Dialog(onDismissRequest = { /* force a choice, no dismiss-on-outside-tap */ }) {
         Column(
@@ -40,11 +41,13 @@ fun WinDialog(
             if (coinsEarned != null) {
                 Text(text = "🪙 +$coinsEarned coins")
             }
+            if (diamondsEarned != null && diamondsEarned > 0) Text(text = "💎 +$diamondsEarned diamonds")
             Spacer(modifier = Modifier.height(20.dp))
             if (onNextLevel != null) {
                 CarScapeButton(text = "Next Level", onClick = onNextLevel)
                 Spacer(modifier = Modifier.height(8.dp))
             }
+            if (onRetry != null)
             CarScapeButton(text = if (onNextLevel != null) "Retry" else "Back to Home", onClick = onRetry)
         }
     }

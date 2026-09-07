@@ -9,6 +9,7 @@ data class PowerUpInventory(
 data class Wallet(
     val coins: Int = 0,
     val hearts: Int = 5,
+    val diamonds: Int = 0,
     val powerUps: PowerUpInventory = PowerUpInventory()
 )
 

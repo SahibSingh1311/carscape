@@ -4,6 +4,7 @@ import com.dmag.carscape.data.model.LevelDto
 import com.dmag.carscape.domain.model.Board
 import com.dmag.carscape.domain.model.Cell
 import com.dmag.carscape.domain.model.ExitGate
+import com.dmag.carscape.domain.model.LevelDifficulty
 import com.dmag.carscape.domain.model.Orientation
 import com.dmag.carscape.domain.model.Vehicle
 
@@ -12,6 +13,9 @@ fun LevelDto.toDomain(): Board = Board(
     cols = cols,
     timeLimitSeconds = timeLimitSeconds,
     coinReward = coinReward,
+    difficulty = runCatching { LevelDifficulty.valueOf(difficulty) }.getOrDefault(LevelDifficulty.NORMAL),
+    diamondReward = diamondReward,
+    optimalMoves = optimalMoves,
     vehicles = vehicles.map { dto ->
         Vehicle(
             id = dto.id,

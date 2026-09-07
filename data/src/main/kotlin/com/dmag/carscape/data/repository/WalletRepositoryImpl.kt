@@ -28,6 +28,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 private val COINS_KEY = intPreferencesKey("wallet_coins")
+private val DIAMONDS_KEY = intPreferencesKey("wallet_diamonds")
 private val HEARTS_KEY = intPreferencesKey("wallet_hearts")
 private val LAST_HEART_LOST_AT_KEY = longPreferencesKey("wallet_last_heart_lost_at")
 private val HAMMER_KEY = intPreferencesKey("wallet_powerup_hammer")
@@ -52,6 +53,7 @@ class WalletRepositoryImpl @Inject constructor(
         val w = Wallet(
             coins = prefs[COINS_KEY] ?: 0,
             hearts = prefs[HEARTS_KEY] ?: MAX_HEARTS,
+            diamonds = prefs[DIAMONDS_KEY] ?: 0,
             powerUps = PowerUpInventory(
                 hammer = prefs[HAMMER_KEY] ?: 0,
                 freeze = prefs[FREEZE_KEY] ?: 0,
@@ -78,6 +80,19 @@ class WalletRepositoryImpl @Inject constructor(
         dataStore.edit {
             prefs-> prefs[COINS_KEY] = current - amount
         }
+        syncToFirestore()
+        return true
+    }
+
+    override suspend fun addDiamonds(amount: Int) {
+        dataStore.edit { prefs -> prefs[DIAMONDS_KEY] = (prefs[DIAMONDS_KEY] ?: 0) + amount }
+        syncToFirestore()
+    }
+
+    override suspend fun spendDiamonds(amount: Int): Boolean {
+        val current = dataStore.data.first()[DIAMONDS_KEY] ?: 0
+        if (current < amount) return false
+        dataStore.edit { prefs -> prefs[DIAMONDS_KEY] = current - amount }
         syncToFirestore()
         return true
     }
@@ -169,6 +184,7 @@ class WalletRepositoryImpl @Inject constructor(
                     .set(
                         mapOf(
                             "coins" to current.coins,
+                            "diamonds" to current.diamonds,
                             "hearts" to current.hearts,
                             "powerUps" to mapOf(
                                 "hammer" to current.powerUps.hammer,

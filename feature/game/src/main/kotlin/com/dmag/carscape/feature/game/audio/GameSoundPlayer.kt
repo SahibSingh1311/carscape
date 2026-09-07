@@ -26,11 +26,13 @@ class GameSoundPlayer @Inject constructor(
     private var moveSoundId: Int? = null
     private var exitSoundId: Int? = null
     private var winSoundId: Int? = null
+    private var sirenSoundId: Int? = null
 
     init {
         moveSoundId = safeLoad(context, R.raw.move_sound)
         exitSoundId = safeLoad(context, R.raw.exit_sound)
         winSoundId = safeLoad(context, R.raw.win_sound)
+        sirenSoundId = safeLoad(context, R.raw.siren_warning)
     }
 
     private fun safeLoad(context: Context, resId: Int): Int? = try {
@@ -43,6 +45,7 @@ class GameSoundPlayer @Inject constructor(
     fun playMove() { moveSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
     fun playExit() { exitSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
     fun playWin() { winSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
+    fun playSiren() { sirenSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
 
     fun release() = soundPool.release()
 }

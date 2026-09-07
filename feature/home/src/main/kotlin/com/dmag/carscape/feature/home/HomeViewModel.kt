@@ -18,7 +18,8 @@ data class HomeUiState(
     val isDailyLocked: Boolean = false,
     val dailyCountdownText: String = "",
     val coins: Int = 0,
-    val hearts: Int = 5
+    val hearts: Int = 5,
+    val diamonds: Int = 0,
 )
 
 @HiltViewModel
@@ -37,7 +38,7 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             walletRepository.wallet.collect { wallet ->
-                _uiState.update {  it.copy(coins = wallet.coins, hearts = wallet.hearts)}
+                _uiState.update {  it.copy(coins = wallet.coins, hearts = wallet.hearts, diamonds = wallet.diamonds)}
             }
         }
 

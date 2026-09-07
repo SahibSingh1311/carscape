@@ -46,14 +46,20 @@ fun CarScapeNavHost(
                 onMarketplaceClick = { navigateToTab(Routes.MARKETPLACE) },
                 onInventoryClick = { navigateToTab(Routes.INVENTORY) },
                 adBubble = {
-                    RewardedAdBubble() }
+                    RewardedAdBubble() },
+                noHeartsDialog = { onDismiss, onHeartEarned ->
+                    com.dmag.carscape.ads.NoHeartsDialog(onDismiss = onDismiss, onHeartEarned = onHeartEarned)
+                }
             )
         }
         composable(route = Routes.GAME,
             arguments = listOf(navArgument("mode") {type = NavType.StringType})) {
             // mode argument available here later if GameViewModel needs to branch on it
             GameScreen(
-                onNavigateHome = { navController.popBackStack() }
+                onNavigateHome = { navController.popBackStack() },
+                noHeartsDialog = { onDismiss, onHeartEarned ->
+                    com.dmag.carscape.ads.NoHeartsDialog(onDismiss = onDismiss, onHeartEarned = onHeartEarned)
+                }
             )
         }
         composable(Routes.MARKETPLACE) {

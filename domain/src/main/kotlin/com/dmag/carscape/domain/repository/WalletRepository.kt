@@ -10,6 +10,9 @@ interface WalletRepository {
     suspend fun addCoins(amount: Int)
     suspend fun spendCoins(amount: Int): Boolean
 
+    suspend fun addDiamonds(amount: Int)
+    suspend fun spendDiamonds(amount: Int): Boolean
+
     suspend fun loseHeart()
     suspend fun addHeart()
     suspend fun refreshHeartRegen()

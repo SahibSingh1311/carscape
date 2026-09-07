@@ -2,4 +2,5 @@ R_DEF: Internal format may change without notice
 local
 raw exit_sound
 raw move_sound
+raw siren_warning
 raw win_sound

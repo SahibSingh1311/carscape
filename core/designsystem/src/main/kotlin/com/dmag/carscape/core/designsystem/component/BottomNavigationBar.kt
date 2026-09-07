@@ -10,15 +10,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -30,8 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dmag.carscape.core.designsystem.R
@@ -63,6 +61,7 @@ fun GameBottomNavigation(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.safeDrawing)
             .height(TOTAL_HEIGHT)                     // total height including the raised part
     ) {
         // Main brown bar (bottom part)
@@ -151,11 +150,10 @@ private fun GameBottomNavItem(
                         modifier = Modifier.size(60.dp)
                             .offset(y = (-12).dp)
                     )
-//                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = item.title.uppercase(),
                         color = Color.White,
-                        fontSize = 16.sp,
+                        fontSize = 14.sp,
                         fontFamily = LuckiestGuy,
                         letterSpacing = 0.5.sp,
                         style = TextStyle(

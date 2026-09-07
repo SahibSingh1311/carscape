@@ -32,22 +32,30 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.dmag.carscape.core.designsystem.component.CarScapeButton
+import com.dmag.carscape.core.designsystem.theme.LuckiestGuy
 import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.feature.game.component.BoardCanvas
+import com.dmag.carscape.feature.game.component.ConfirmLoseHeartDialog
+import com.dmag.carscape.feature.game.component.DifficultyWarningOverlay
 import com.dmag.carscape.feature.game.component.PauseDialog
 import com.dmag.carscape.feature.game.component.PowerUpBar
 import com.dmag.carscape.feature.game.component.TimeUpDialog
 import com.dmag.carscape.feature.game.component.VehicleBlock
 import com.dmag.carscape.feature.game.component.WinDialog
 
+private enum class PendingHeartAction { RESTART, HOME }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameScreen(
     onNavigateHome: () -> Unit,
+    noHeartsDialog: @Composable (onDismiss: () -> Unit, onHeartEarned: () -> Unit) -> Unit = { _, _ -> },
     viewModel: GameViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
     var isPaused by remember { mutableStateOf(false) }
+    var pendingHeartAction by remember { mutableStateOf<PendingHeartAction?>(null) }
+    var pendingNoHeartsAction by remember { mutableStateOf<PendingHeartAction?>(null) }
 
     LaunchedEffect(isPaused) {
         if(isPaused) viewModel.pauseTimer() else viewModel.resumeTimer()
@@ -73,7 +81,13 @@ fun GameScreen(
                             if (current.mode == GameMode.TIMED && current.timeRemainingSeconds != null) {
                                 Text("⏱ ${current.timeRemainingSeconds}s")
                             }
-                            Text("Moves: ${current.moves}")
+                            val isCasualBoss = current.mode == GameMode.CASUAL && current.board.optimalMoves > 0
+                            if (isCasualBoss) {
+                                val remaining = (current.board.optimalMoves - current.moves).coerceAtLeast(0)
+                                Text("Moves left: $remaining")
+                            } else {
+                                Text("Moves: ${current.moves}")
+                            }
                         }
                     } else {
                         Text("CarScape")
@@ -115,7 +129,7 @@ fun GameScreen(
                         Text("You've cleared all available levels!")
                         Text("More levels coming soon 🚗")
                         Spacer(modifier = Modifier.height(16.dp))
-                        com.dmag.carscape.core.designsystem.component.CarScapeButton(
+                        CarScapeButton(
                             text = "Back to Home",
                             onClick = onNavigateHome
                         )
@@ -153,34 +167,140 @@ fun GameScreen(
                             onAddTimeClick = { viewModel.useAddTime() }
                         )
 
-                            if (current.isSolved) {
-                                if (current.mode == GameMode.DAILY) {
-                                    WinDialog(
-                                        moves = current.moves,
-                                        coinsEarned = current.board.coinReward,
-                                        onNextLevel = null,  // no next level for Daily — locked until tomorrow
-                                        onRetry = onNavigateHome  // repurpose as the single available action: back to Home
-                                    )
-                                } else {
-                                    WinDialog(
-                                        moves = current.moves,
-                                        coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
-                                        onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
-                                        onRetry = { viewModel.loadLevel(current.levelNumber) }
-                                    )
-                                }
-                            }
-
-                            if (isPaused) {
-                                PauseDialog(
-                                    onResume = { isPaused = false },
-                                    onRestart = {
-                                        isPaused = false
-                                        viewModel.loadLevel(current.levelNumber)
-                                    },
-                                    onHome = onNavigateHome
+                        if (current.isSolved) {
+                            if (current.mode == GameMode.DAILY) {
+                                WinDialog(
+                                    moves = current.moves,
+                                    coinsEarned = current.board.coinReward,
+                                    onNextLevel = null,  // no next level for Daily — locked until tomorrow
+                                    onRetry = onNavigateHome  // repurpose as the single available action: back to Home
+                                )
+                            } else {
+                                WinDialog(
+                                    moves = current.moves,
+                                    coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
+                                    diamondsEarned = current.board.diamondReward.takeIf { it > 0 },
+                                    onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
+                                    onRetry = null
                                 )
                             }
+                        }
+
+                        if (isPaused && pendingHeartAction == null && pendingNoHeartsAction == null) {
+                            PauseDialog(
+                                onResume = { isPaused = false },
+                                onRestart = {
+                                    if (current.hearts > 0) pendingHeartAction = PendingHeartAction.RESTART
+                                    else pendingNoHeartsAction = PendingHeartAction.RESTART
+                                },
+                                onHome = {
+                                    pendingHeartAction = PendingHeartAction.HOME
+                                }
+                            )
+                        }
+
+                        pendingHeartAction?.let { action ->
+                            ConfirmLoseHeartDialog(
+                                onConfirm = {
+                                    viewModel.loseHeart()
+                                    when (action) {
+                                        PendingHeartAction.RESTART -> {
+                                            isPaused = false
+                                            viewModel.loadLevel(current.levelNumber)
+                                        }
+                                        PendingHeartAction.HOME -> {
+                                            isPaused = false
+                                            onNavigateHome()
+                                        }
+                                    }
+                                    pendingHeartAction = null
+                                },
+                                onCancel = { pendingHeartAction = null } // falls back to PauseDialog automatically
+                            )
+                        }
+
+                        pendingNoHeartsAction?.let { action ->
+                            noHeartsDialog(
+                                { pendingNoHeartsAction = null }, // Cancel — falls back to PauseDialog automatically
+                                {
+                                    // Ad watched, heart earned — that ad IS the toll, no additional loseHeart() call
+                                    when (action) {
+                                        PendingHeartAction.RESTART -> {
+                                            isPaused = false
+                                            viewModel.loadLevel(current.levelNumber)
+                                        }
+                                        PendingHeartAction.HOME -> {
+                                            isPaused = false
+                                            onNavigateHome()
+                                        }
+                                    }
+                                    pendingNoHeartsAction = null
+                                }
+                            )
+                        }
+                    }
+
+                    if (current.showDifficultyWarning) {
+                        DifficultyWarningOverlay(
+                            difficulty = current.board.difficulty,
+                            onFinished = { viewModel.onDifficultyWarningFinished() }
+                        )
+                    }
+                }
+
+                is GameUiState.MovesExceeded -> {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text("Out of moves!", fontFamily = LuckiestGuy)
+                        Text("This boss level got the better of you.", fontFamily = LuckiestGuy)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        CarScapeButton(text = "Retry", onClick = {
+                            if (current.hearts > 0) pendingHeartAction = PendingHeartAction.RESTART
+                            else pendingNoHeartsAction = PendingHeartAction.RESTART
+                        },)
+                        Spacer(modifier = Modifier.height(8.dp))
+                        CarScapeButton(text = "Back to Home", onClick = {
+                            pendingHeartAction = PendingHeartAction.HOME
+                        })
+                    }
+
+                    pendingHeartAction?.let { action ->
+                        ConfirmLoseHeartDialog(
+                            onConfirm = {
+                                viewModel.loseHeart()
+                                when (action) {
+                                    PendingHeartAction.RESTART -> {
+                                        isPaused = false
+                                        viewModel.loadLevel(current.levelNumber)
+                                    }
+                                    PendingHeartAction.HOME -> {
+                                        isPaused = false
+                                        onNavigateHome()
+                                    }
+                                }
+                                pendingHeartAction = null
+                            },
+                            onCancel = { pendingHeartAction = null } // falls back to PauseDialog automatically
+                        )
+                    }
+
+                    pendingNoHeartsAction?.let { action ->
+                        noHeartsDialog(
+                            { pendingNoHeartsAction = null }, // Cancel — falls back to PauseDialog automatically
+                            {
+                                // Ad watched, heart earned — that ad IS the toll, no additional loseHeart() call
+                                when (action) {
+                                    PendingHeartAction.RESTART -> {
+                                        isPaused = false
+                                        viewModel.loadLevel(current.levelNumber)
+                                    }
+                                    PendingHeartAction.HOME -> {
+                                        isPaused = false
+                                        onNavigateHome()
+                                    }
+                                }
+                                pendingNoHeartsAction = null
+                            }
+                        )
                     }
                 }
             }

@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dmag.carscape.core.designsystem.theme.ActionGreen
 import com.dmag.carscape.core.designsystem.theme.GoldBright
+import com.dmag.carscape.core.designsystem.theme.LuckiestGuy
 
 @Composable
 fun CarScapeButton(
@@ -35,6 +36,6 @@ fun CarScapeButton(
             .padding(horizontal = 32.dp, vertical = 14.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = text, color = Color.White, fontWeight = FontWeight.Bold)
+        Text(text = text, fontFamily = LuckiestGuy, color = Color.White, fontWeight = FontWeight.Bold)
     }
 }

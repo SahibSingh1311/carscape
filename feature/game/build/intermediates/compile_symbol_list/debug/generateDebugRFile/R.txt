@@ -1,3 +1,4 @@
 int raw exit_sound 0x0
 int raw move_sound 0x0
+int raw siren_warning 0x0
 int raw win_sound 0x0

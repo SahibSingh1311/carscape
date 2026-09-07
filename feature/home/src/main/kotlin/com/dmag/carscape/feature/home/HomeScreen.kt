@@ -2,28 +2,16 @@ package com.dmag.carscape.feature.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,29 +19,21 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.dmag.carscape.core.designsystem.component.BottomNavItem
 import com.dmag.carscape.core.designsystem.component.ChunkyButton
 import com.dmag.carscape.core.designsystem.component.GameBottomNavigation
-import com.dmag.carscape.core.designsystem.theme.CarScapeBackgroundBrush
-import com.dmag.carscape.core.designsystem.theme.GoldBright
-import com.dmag.carscape.core.designsystem.theme.GoldDeep
 import com.dmag.carscape.core.designsystem.theme.LuckiestGuy
-import com.dmag.carscape.core.designsystem.theme.OnSurfaceLight
-import com.dmag.carscape.core.designsystem.theme.WoodDark
-import com.dmag.carscape.core.designsystem.theme.WoodLight
 import com.dmag.carscape.domain.model.GameMode
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
@@ -63,10 +43,20 @@ fun HomeScreen(
     onMarketplaceClick: () -> Unit,
     onInventoryClick: () -> Unit,
     adBubble: @Composable () -> Unit = {},
+    noHeartsDialog: @Composable (onDismiss: () -> Unit, onHeartEarned: () -> Unit) -> Unit = { _, _ -> },
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
     val state by viewModel.uiState.collectAsState()
+    var pendingMode by remember { mutableStateOf<GameMode?>(null) }
+
+    fun tryStartMode(mode: GameMode) {
+        if (state.hearts > 0) {
+            onModeSelected(mode)
+        } else {
+            pendingMode = mode
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
@@ -89,6 +79,14 @@ fun HomeScreen(
                     )
                 )
         )
+
+        pendingMode?.let { mode ->
+            noHeartsDialog(
+                { pendingMode = null },
+                { pendingMode = null; onModeSelected(mode) }
+            )
+        }
+
         Scaffold(
             containerColor = Color.Transparent,
             topBar = {
@@ -102,11 +100,14 @@ fun HomeScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Row {
-                                Icon(Icons.Filled.Favorite, contentDescription = "Hearts")
+                                Icon(Icons.Filled.Favorite, contentDescription = "Hearts", tint = Color.Red)
                                 Text(text = " ${state.hearts}", fontFamily = LuckiestGuy)
                             }
                             Text(text = "CarScape", fontFamily = LuckiestGuy)
-                            Text(text = "🪙 ${state.coins}", fontFamily = LuckiestGuy)
+                            Row {
+                                Text(text = "💎 ${state.diamonds}", fontFamily = LuckiestGuy)
+                                Text(text = "🪙 ${state.coins}", fontFamily = LuckiestGuy)
+                            }
                         }
                     }
                 )
@@ -166,17 +167,17 @@ fun HomeScreen(
                         supportingText = if (state.isDailyLocked) "Next in ${state.dailyCountdownText}" else null,
                         backgroundColor = Color(0xFF4CC94F),
                         enabled = !state.isDailyLocked,
-                        onClick = { if (!state.isDailyLocked) onModeSelected(GameMode.DAILY) },
+                        onClick = { tryStartMode(GameMode.DAILY)  },
                     )
                     ChunkyButton(
                         text = "TIMED MODE",
                         backgroundColor = Color(0xFFFFC145),
-                        onClick = { onModeSelected(GameMode.TIMED) },
+                        onClick = { tryStartMode(GameMode.TIMED) },
                     )
                     ChunkyButton(
                         text = "CASUAL MODE",
                         backgroundColor = Color(0xFF4FA3E0),
-                        onClick = { onModeSelected(GameMode.CASUAL) },
+                        onClick = { tryStartMode(GameMode.CASUAL) },
                     )
                 }
                 Box(modifier = Modifier.align(Alignment.CenterStart)) {

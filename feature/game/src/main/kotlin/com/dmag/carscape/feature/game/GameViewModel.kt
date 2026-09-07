@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.domain.model.GameState
+import com.dmag.carscape.domain.model.LevelDifficulty
 import com.dmag.carscape.domain.model.Orientation
 import com.dmag.carscape.domain.model.PowerUpInventory
 import com.dmag.carscape.domain.model.PowerUpType
@@ -53,6 +54,7 @@ class GameViewModel @Inject constructor(
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
 
     private var latestPowerUps: PowerUpInventory = PowerUpInventory()
+    private var latestHearts: Int = 0
     private var gameState: GameState? = null
     private var currentLevelNumber = 1
     private var timerJob: Job? = null
@@ -72,8 +74,9 @@ class GameViewModel @Inject constructor(
         viewModelScope.launch {
             walletRepository.wallet.collect { wallet ->
                 latestPowerUps = wallet.powerUps
+                latestHearts = wallet.hearts
                 _uiState.update { current ->
-                    if(current is GameUiState.Success) current.copy(powerUps = wallet.powerUps) else current
+                    if(current is GameUiState.Success) current.copy(powerUps = wallet.powerUps, hearts = wallet.hearts) else current
                 }
             }
         }
@@ -100,14 +103,31 @@ class GameViewModel @Inject constructor(
                 val newState = GameState(board = board)
                 gameState = newState
                 timeRemaining = board.timeLimitSeconds
-                _uiState.update {  newState.toUiState(levelNumber, timeRemaining)}
+                val hasWarning = board.difficulty != LevelDifficulty.NORMAL
 
-                if (mode == GameMode.TIMED) {
+                _uiState.update {
+                    newState.toUiState(levelNumber, timeRemaining).copy(
+                    showDifficultyWarning = hasWarning
+                )}
+
+                if (hasWarning) {
+                    soundPlayer.playSiren()
+                } else if (mode == GameMode.TIMED) {
                     startTimer()
                 }
             } catch (e: NoSuchElementException) {
                 _uiState.update { GameUiState.NoMoreLevels(lastLevelNumber = levelNumber - 1)}
             }
+
+        }
+    }
+
+    fun onDifficultyWarningFinished() {
+        _uiState.update { current ->
+            if (current is GameUiState.Success) current.copy(showDifficultyWarning = false) else current
+        }
+        if (mode == GameMode.TIMED) {
+            startTimer()
         }
     }
 
@@ -123,10 +143,16 @@ class GameViewModel @Inject constructor(
             if(timeRemaining <= 0) {
                 val current = gameState
                 if (current != null && !current.isSolved) {
-                    walletRepository.loseHeart()
+                    loseHeart()
                     _uiState.update { GameUiState.TimeUp(levelNumber = currentLevelNumber) }
                 }
             }
+        }
+    }
+
+    fun loseHeart() {
+        viewModelScope.launch {
+            walletRepository.loseHeart()
         }
     }
 
@@ -160,7 +186,9 @@ class GameViewModel @Inject constructor(
             mode = mode,
             timeRemainingSeconds = if (mode == GameMode.TIMED) timeRemainingSeconds else null,
             powerUps = latestPowerUps,
-            isHammerModeActive = existing?.isHammerModeActive ?: false
+            hearts = latestHearts,
+            isHammerModeActive = existing?.isHammerModeActive ?: false,
+            showDifficultyWarning = existing?.showDifficultyWarning ?: false
         )
     }
 
@@ -181,6 +209,14 @@ class GameViewModel @Inject constructor(
         }
 
         handlePotentialWin(updated)
+
+        // Casual boss-level move cap — only enforced when optimalMoves is set (Hard/Very Hard tiers)
+        if (!updated.isSolved && mode == GameMode.CASUAL && updated.board.optimalMoves > 0) {
+            val moveLimit = updated.board.optimalMoves
+            if (updated.moves >= moveLimit) {
+                _uiState.update { GameUiState.MovesExceeded(levelNumber = currentLevelNumber, hearts = latestHearts) }
+            }
+        }
 
 //        if (updated.isSolved) {
 //            timerJob?.cancel()
@@ -211,6 +247,9 @@ class GameViewModel @Inject constructor(
                 }
                 if (mode == GameMode.TIMED || mode == GameMode.DAILY) {
                     walletRepository.addCoins(updated.board.coinReward)
+                }
+                if (updated.board.diamondReward > 0) {
+                    walletRepository.addDiamonds(updated.board.diamondReward)
                 }
             }
         }

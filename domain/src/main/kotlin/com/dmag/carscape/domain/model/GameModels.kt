@@ -2,6 +2,8 @@ package com.dmag.carscape.domain.model
 
 enum class Orientation { HORIZONTAL, VERTICAL }
 
+enum class LevelDifficulty { NORMAL, HARD, VERY_HARD }
+
 data class Cell(val row: Int, val col: Int)
 
 data class Vehicle(
@@ -29,7 +31,10 @@ data class Board(
     val vehicles: List<Vehicle> = emptyList(),
     val exits: List<ExitGate> = emptyList(),
     val timeLimitSeconds: Int = 60,
-    val coinReward: Int = 10
+    val coinReward: Int = 10,
+    val difficulty: LevelDifficulty = LevelDifficulty.NORMAL,
+    val diamondReward: Int = 0,
+    val optimalMoves: Int = 0
 )
 
 data class GameState(
