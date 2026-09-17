@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.dmag.carscape.core.designsystem-mergeReleaseResources-35:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\297b4afa0870d674bc2c9a238a0a2d69\\workspace\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.dmag.carscape.core.designsystem-release-37:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\SAHIB\\.gradle\\caches\\9.3.1\\transforms\\297b4afa0870d674bc2c9a238a0a2d69\\workspace\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}

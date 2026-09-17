@@ -7,14 +7,18 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.dmag.carscape.core.common.DefaultDispatcherProvider
 import com.dmag.carscape.core.common.DispatcherProvider
 import com.dmag.carscape.data.repository.AuthRepositoryImpl
+import com.dmag.carscape.data.repository.CosmeticsRepositoryImpl
 import com.dmag.carscape.data.repository.LevelRepositoryImpl
 import com.dmag.carscape.data.repository.PricingRepositoryImpl
 import com.dmag.carscape.data.repository.ProgressRepositoryImpl
+import com.dmag.carscape.data.repository.ThemeCatalogRepositoryImpl
 import com.dmag.carscape.data.repository.WalletRepositoryImpl
 import com.dmag.carscape.domain.repository.AuthRepository
+import com.dmag.carscape.domain.repository.CosmeticsRepository
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.PricingRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.repository.ThemeCatalogRepository
 import com.dmag.carscape.domain.repository.WalletRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -86,4 +90,12 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindPricingRepository(impl: PricingRepositoryImpl): PricingRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCosmeticsRepository(impl: CosmeticsRepositoryImpl): CosmeticsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindThemeCatalogRepository(impl: ThemeCatalogRepositoryImpl): ThemeCatalogRepository
 }

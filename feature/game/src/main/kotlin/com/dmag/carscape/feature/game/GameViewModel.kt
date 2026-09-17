@@ -4,6 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dmag.carscape.core.common.DispatcherProvider
+import com.dmag.carscape.domain.model.BoardThemeDefinition
+import com.dmag.carscape.domain.model.CosmeticsState
+import com.dmag.carscape.domain.model.DEFAULT_BOARD_THEME
 import com.dmag.carscape.domain.model.GameMode
 import com.dmag.carscape.domain.model.GameState
 import com.dmag.carscape.domain.model.LevelDifficulty
@@ -11,8 +14,10 @@ import com.dmag.carscape.domain.model.Orientation
 import com.dmag.carscape.domain.model.PowerUpInventory
 import com.dmag.carscape.domain.model.PowerUpType
 import com.dmag.carscape.domain.model.Vehicle
+import com.dmag.carscape.domain.repository.CosmeticsRepository
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.repository.ThemeCatalogRepository
 import com.dmag.carscape.domain.repository.WalletRepository
 import com.dmag.carscape.domain.usecase.GetValidSlideDistanceUseCase
 import com.dmag.carscape.domain.usecase.MoveVehicleUseCase
@@ -39,6 +44,8 @@ class GameViewModel @Inject constructor(
     private val levelRepository: LevelRepository,
     private val progressRepository: ProgressRepository,
     private val walletRepository: WalletRepository,
+    private val themeCatalogRepository: ThemeCatalogRepository,
+    private val cosmeticsRepository: CosmeticsRepository,
     private val moveVehicle: MoveVehicleUseCase,
     private val removeVehicle: RemoveVehicleUseCase,
     private val getValidSlideDistance: GetValidSlideDistanceUseCase,
@@ -52,6 +59,9 @@ class GameViewModel @Inject constructor(
 
     private val _uiState = MutableStateFlow<GameUiState>(GameUiState.Loading)
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
+
+    private var boardThemeCatalog: List<BoardThemeDefinition> = emptyList()
+    private var latestCosmetics: CosmeticsState = CosmeticsState()
 
     private var latestPowerUps: PowerUpInventory = PowerUpInventory()
     private var latestHearts: Int = 0
@@ -68,6 +78,12 @@ class GameViewModel @Inject constructor(
             } else {
                 val startLevel = progressRepository.getUnlockedLevel(mode)
                 loadLevel(startLevel)
+            }
+            viewModelScope.launch(dispatchers.io) {
+                boardThemeCatalog = themeCatalogRepository.getBoardThemes()
+            }
+            viewModelScope.launch {
+                cosmeticsRepository.cosmetics.collect { latestCosmetics = it }
             }
         }
 
@@ -91,6 +107,9 @@ class GameViewModel @Inject constructor(
             loadLevel(DailyChallenge.currentLevelNumber())
         }
     }
+
+    fun currentBoardTheme(): BoardThemeDefinition =
+        boardThemeCatalog.find { it.id == latestCosmetics.equippedBoardThemeId } ?: DEFAULT_BOARD_THEME
 
     fun loadLevel(levelNumber: Int) {
         currentLevelNumber = levelNumber

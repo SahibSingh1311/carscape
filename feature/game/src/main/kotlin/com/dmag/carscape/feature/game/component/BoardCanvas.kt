@@ -16,8 +16,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.dmag.carscape.core.designsystem.theme.ExitGlow
-import com.dmag.carscape.core.designsystem.theme.RoadGray
 import com.dmag.carscape.core.designsystem.theme.RoadGrayLight
 import com.dmag.carscape.core.designsystem.theme.VehicleColors
 import com.dmag.carscape.domain.model.Board
@@ -26,6 +26,8 @@ import com.dmag.carscape.domain.model.Orientation
 @Composable
 fun BoardCanvas(
     board: Board,
+    tileColorA: Color,
+    tileColorB: Color,
     modifier: Modifier = Modifier,
     content: @Composable (cellSizePx: Float) -> Unit
 ) {
@@ -44,7 +46,7 @@ fun BoardCanvas(
             for (row in 0 until board.rows) {
                 for (col in 0 until board.cols) {
                     drawRect(
-                        color = if ((row + col) % 2 == 0) RoadGray else RoadGrayLight,
+                        color = if ((row + col) % 2 == 0) tileColorA else tileColorB,
                         topLeft = Offset(col * cell, row * cell),
                         size = Size(cell, cell)
                     )
@@ -61,14 +63,14 @@ fun BoardCanvas(
                     drawRect(
                         color = gateColor,
                         topLeft = Offset(x, exit.cell.row * cell),
-                        size = Size(thickness, cell)
+                        size = Size(thickness, cell * exit.thickness)
                     )
                 } else {
                     val y = if (exit.cell.row == 0) 0f else size.height - thickness
                     drawRect(
                         color = gateColor,
                         topLeft = Offset(exit.cell.col * cell, y),
-                        size = Size(cell, thickness)
+                        size = Size(cell * exit.thickness, thickness)
                     )
                 }
             }

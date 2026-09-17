@@ -21,6 +21,7 @@ fun LevelDto.toDomain(): Board = Board(
             id = dto.id,
             orientation = Orientation.valueOf(dto.orientation),
             length = dto.length,
+            thickness = dto.thickness.coerceAtLeast(1),
             head = Cell(dto.headRow, dto.headCol),
             colorIndex = dto.colorIndex
         )
@@ -29,6 +30,7 @@ fun LevelDto.toDomain(): Board = Board(
         ExitGate(
             cell = Cell(dto.row, dto.col),
             orientation = Orientation.valueOf(dto.orientation),
+            thickness = dto.thickness.coerceAtLeast(1),
             colorIndex = dto.colorIndex
         )
     }
