@@ -1,6 +1,5 @@
 package com.dmag.carscape.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -59,7 +58,8 @@ fun CarScapeNavHost(
                 onNavigateHome = { navController.popBackStack() },
                 noHeartsDialog = { onDismiss, onHeartEarned ->
                     com.dmag.carscape.ads.NoHeartsDialog(onDismiss = onDismiss, onHeartEarned = onHeartEarned)
-                }
+                },
+                bannerAd = { com.dmag.carscape.ads.BannerAdView() }
             )
         }
         composable(Routes.MARKETPLACE) {

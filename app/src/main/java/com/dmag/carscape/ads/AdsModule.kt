@@ -1,5 +1,6 @@
 package com.dmag.carscape.ads
 
+import com.dmag.carscape.domain.repository.InterstitialAdRepository
 import com.dmag.carscape.domain.repository.RewardedAdRepository
 import dagger.Binds
 import dagger.Module
@@ -13,4 +14,8 @@ abstract class AdsModule {
     @Binds
     @Singleton
     abstract fun bindRewardAdRepository(impl: RewardedAdRepositoryImpl): RewardedAdRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindInterstitialAdRepository(impl: InterstitialAdRepositoryImpl): InterstitialAdRepository
 }

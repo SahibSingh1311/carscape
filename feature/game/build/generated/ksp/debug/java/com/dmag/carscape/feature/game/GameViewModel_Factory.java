@@ -3,6 +3,7 @@ package com.dmag.carscape.feature.game;
 import androidx.lifecycle.SavedStateHandle;
 import com.dmag.carscape.core.common.DispatcherProvider;
 import com.dmag.carscape.domain.repository.CosmeticsRepository;
+import com.dmag.carscape.domain.repository.InterstitialAdRepository;
 import com.dmag.carscape.domain.repository.LevelRepository;
 import com.dmag.carscape.domain.repository.ProgressRepository;
 import com.dmag.carscape.domain.repository.ThemeCatalogRepository;
@@ -37,6 +38,8 @@ import javax.annotation.processing.Generated;
 public final class GameViewModel_Factory implements Factory<GameViewModel> {
   private final Provider<SavedStateHandle> savedStateHandleProvider;
 
+  private final Provider<InterstitialAdRepository> interstitialAdRepositoryProvider;
+
   private final Provider<LevelRepository> levelRepositoryProvider;
 
   private final Provider<ProgressRepository> progressRepositoryProvider;
@@ -58,6 +61,7 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
   private final Provider<DispatcherProvider> dispatchersProvider;
 
   private GameViewModel_Factory(Provider<SavedStateHandle> savedStateHandleProvider,
+      Provider<InterstitialAdRepository> interstitialAdRepositoryProvider,
       Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<WalletRepository> walletRepositoryProvider,
@@ -69,6 +73,7 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
       Provider<GameSoundPlayer> soundPlayerProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
     this.savedStateHandleProvider = savedStateHandleProvider;
+    this.interstitialAdRepositoryProvider = interstitialAdRepositoryProvider;
     this.levelRepositoryProvider = levelRepositoryProvider;
     this.progressRepositoryProvider = progressRepositoryProvider;
     this.walletRepositoryProvider = walletRepositoryProvider;
@@ -83,10 +88,11 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
 
   @Override
   public GameViewModel get() {
-    return newInstance(savedStateHandleProvider.get(), levelRepositoryProvider.get(), progressRepositoryProvider.get(), walletRepositoryProvider.get(), themeCatalogRepositoryProvider.get(), cosmeticsRepositoryProvider.get(), moveVehicleProvider.get(), removeVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
+    return newInstance(savedStateHandleProvider.get(), interstitialAdRepositoryProvider.get(), levelRepositoryProvider.get(), progressRepositoryProvider.get(), walletRepositoryProvider.get(), themeCatalogRepositoryProvider.get(), cosmeticsRepositoryProvider.get(), moveVehicleProvider.get(), removeVehicleProvider.get(), getValidSlideDistanceProvider.get(), soundPlayerProvider.get(), dispatchersProvider.get());
   }
 
   public static GameViewModel_Factory create(Provider<SavedStateHandle> savedStateHandleProvider,
+      Provider<InterstitialAdRepository> interstitialAdRepositoryProvider,
       Provider<LevelRepository> levelRepositoryProvider,
       Provider<ProgressRepository> progressRepositoryProvider,
       Provider<WalletRepository> walletRepositoryProvider,
@@ -97,15 +103,16 @@ public final class GameViewModel_Factory implements Factory<GameViewModel> {
       Provider<GetValidSlideDistanceUseCase> getValidSlideDistanceProvider,
       Provider<GameSoundPlayer> soundPlayerProvider,
       Provider<DispatcherProvider> dispatchersProvider) {
-    return new GameViewModel_Factory(savedStateHandleProvider, levelRepositoryProvider, progressRepositoryProvider, walletRepositoryProvider, themeCatalogRepositoryProvider, cosmeticsRepositoryProvider, moveVehicleProvider, removeVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
+    return new GameViewModel_Factory(savedStateHandleProvider, interstitialAdRepositoryProvider, levelRepositoryProvider, progressRepositoryProvider, walletRepositoryProvider, themeCatalogRepositoryProvider, cosmeticsRepositoryProvider, moveVehicleProvider, removeVehicleProvider, getValidSlideDistanceProvider, soundPlayerProvider, dispatchersProvider);
   }
 
   public static GameViewModel newInstance(SavedStateHandle savedStateHandle,
-      LevelRepository levelRepository, ProgressRepository progressRepository,
-      WalletRepository walletRepository, ThemeCatalogRepository themeCatalogRepository,
-      CosmeticsRepository cosmeticsRepository, MoveVehicleUseCase moveVehicle,
-      RemoveVehicleUseCase removeVehicle, GetValidSlideDistanceUseCase getValidSlideDistance,
-      GameSoundPlayer soundPlayer, DispatcherProvider dispatchers) {
-    return new GameViewModel(savedStateHandle, levelRepository, progressRepository, walletRepository, themeCatalogRepository, cosmeticsRepository, moveVehicle, removeVehicle, getValidSlideDistance, soundPlayer, dispatchers);
+      InterstitialAdRepository interstitialAdRepository, LevelRepository levelRepository,
+      ProgressRepository progressRepository, WalletRepository walletRepository,
+      ThemeCatalogRepository themeCatalogRepository, CosmeticsRepository cosmeticsRepository,
+      MoveVehicleUseCase moveVehicle, RemoveVehicleUseCase removeVehicle,
+      GetValidSlideDistanceUseCase getValidSlideDistance, GameSoundPlayer soundPlayer,
+      DispatcherProvider dispatchers) {
+    return new GameViewModel(savedStateHandle, interstitialAdRepository, levelRepository, progressRepository, walletRepository, themeCatalogRepository, cosmeticsRepository, moveVehicle, removeVehicle, getValidSlideDistance, soundPlayer, dispatchers);
   }
 }

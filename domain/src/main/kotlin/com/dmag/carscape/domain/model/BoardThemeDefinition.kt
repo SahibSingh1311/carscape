@@ -18,6 +18,6 @@ data class VehicleThemeDefinition(
 
 val DEFAULT_BOARD_THEME = BoardThemeDefinition(
     id = "default", name = "Classic Asphalt", price = 0,
-    tileColorA = "#35354F", tileColorB = "#44446A", borderColor = "#E8A93B"
+    tileColorA = "#C9BFAE", tileColorB = "#B3A794", borderColor = "#E8A93B"
 )
 val DEFAULT_VEHICLE_THEME = VehicleThemeDefinition(id = "default", name = "Classic", price = 0)

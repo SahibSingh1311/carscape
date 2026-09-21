@@ -56,6 +56,7 @@ private enum class PendingHeartAction { RESTART, HOME }
 fun GameScreen(
     onNavigateHome: () -> Unit,
     noHeartsDialog: @Composable (onDismiss: () -> Unit, onHeartEarned: () -> Unit) -> Unit = { _, _ -> },
+    bannerAd: @Composable () -> Unit = {},
     viewModel: GameViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -204,6 +205,10 @@ fun GameScreen(
                                 onAddTimeClick = { viewModel.useAddTime() }
                             )
 
+                            Spacer(modifier = Modifier.height(20.dp))
+
+                            bannerAd()
+
                             if (current.isSolved) {
                                 if (current.mode == GameMode.DAILY) {
                                     WinDialog(
@@ -217,7 +222,7 @@ fun GameScreen(
                                         moves = current.moves,
                                         coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
                                         diamondsEarned = current.board.diamondReward.takeIf { it > 0 },
-                                        onNextLevel = { viewModel.loadLevel(current.levelNumber + 1) },
+                                        onNextLevel = { viewModel.onNextLevelClicked() },
                                         onRetry = null
                                     )
                                 }

@@ -25,8 +25,8 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun RewardedAdBubble(
-    viewModel: RewardedAdViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: RewardedAdViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
 

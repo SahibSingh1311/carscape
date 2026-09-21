@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.1.1" type="incidents">
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/background.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/background.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/board_background.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/board_background.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/bus_1_h.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/bus_1_h.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/bus_1_v.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/bus_1_v.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/ic_background.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_background.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/ic_inventory.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_inventory.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/ic_marketplace.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_marketplace.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/ic_play.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_play.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/limo_car_1_h.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/limo_car_1_h.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/limo_car_1_v.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/limo_car_1_v.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/pickup_truck_1_h.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/pickup_truck_1_h.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/pickup_truck_1_v.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/pickup_truck_1_v.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/powerup_add_time.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/powerup_add_time.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/powerup_freeze.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/powerup_freeze.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/powerup_hammer.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/powerup_hammer.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/sedan_car_1_h.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/sedan_car_1_h.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/sedan_car_1_v.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/sedan_car_1_v.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/small_car_1_h.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/small_car_1_h.png"/>
+    </incident>
+
+    <incident
+        id="IconLocation"
+        severity="warning"
+        message="Found bitmap drawable `res/drawable/small_car_1_v.png` in densityless folder">
+        <location
+            file="${:core:designsystem*debug*MAIN*sourceProvider*0*resDir*0}/drawable/small_car_1_v.png"/>
+    </incident>
+
+</incidents>

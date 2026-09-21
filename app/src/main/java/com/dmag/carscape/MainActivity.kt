@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.dmag.carscape.ads.RewardedAdRepositoryImpl
+import com.dmag.carscape.ads.CurrentActivityHolder
 import com.dmag.carscape.core.designsystem.theme.CarScapeTheme
 import com.dmag.carscape.navigation.CarScapeNavHost
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var rewardedAdRepositoryImpl: RewardedAdRepositoryImpl
+    lateinit var currentActivityHolder: CurrentActivityHolder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +28,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        rewardedAdRepositoryImpl.setCurrentActivity(this)
+        currentActivityHolder.activity = this
     }
 
     override fun onPause() {
-        rewardedAdRepositoryImpl.setCurrentActivity(null)
+        currentActivityHolder.activity = null
         super.onPause()
     }
 }

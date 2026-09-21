@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.1.1" type="incidents">
+
+    <incident
+        id="EmptySuperCall"
+        severity="warning"
+        message="No need to call `super.onCleared`; the super method is defined to be empty">
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/GameViewModel.kt"
+            line="369"
+            column="15"
+            startOffset="14348"
+            endLine="369"
+            endColumn="24"
+            endOffset="14357"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`">
+        <fix-replace
+            description="Replace with mutableFloatStateOf"
+            replacement="androidx.compose.runtime.mutableFloatStateOf"
+            shortenNames="true"
+            priority="0">
+            <range
+                file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/BoardCanvas.kt"
+                startOffset="1307"
+                endOffset="1321"/>
+        </fix-replace>
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/BoardCanvas.kt"
+            line="34"
+            column="36"
+            startOffset="1307"
+            endLine="34"
+            endColumn="50"
+            endOffset="1321"/>
+    </incident>
+
+    <incident
+        id="AutoboxingStateCreation"
+        severity="informational"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`">
+        <fix-replace
+            description="Replace with mutableFloatStateOf"
+            replacement="androidx.compose.runtime.mutableFloatStateOf"
+            shortenNames="true"
+            priority="0">
+            <range
+                file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
+                startOffset="2709"
+                endOffset="2723"/>
+        </fix-replace>
+        <location
+            file="${:feature:game*debug*MAIN*sourceProvider*0*javaDir*2}/com/dmag/carscape/feature/game/component/VehicleBlock.kt"
+            line="63"
+            column="50"
+            startOffset="2709"
+            endLine="63"
+            endColumn="64"
+            endOffset="2723"/>
+    </incident>
+
+</incidents>

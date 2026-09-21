@@ -26,5 +26,5 @@ sealed interface GameUiState {
 
     data class NoMoreLevels(val lastLevelNumber: Int) : GameUiState
 
-    data class MovesExceeded(val levelNumber: Int, val hearts: Int = 0,) : GameUiState
+    data class MovesExceeded(val levelNumber: Int, val hearts: Int = 0) : GameUiState
 }

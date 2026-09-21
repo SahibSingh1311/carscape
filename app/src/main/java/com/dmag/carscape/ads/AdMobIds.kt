@@ -4,11 +4,19 @@ import com.dmag.carscape.BuildConfig
 
 object AdMobIds {
     val REWARDED_AD_UNIT_ID: String
-        get() = if (BuildConfig.DEBUG) {
+        get() = /**if (BuildConfig.DEBUG) {
             "ca-app-pub-3940256099942544/5224354917" // Google's official test ID
-        } else {
+        } else { */
             "ca-app-pub-9693169126547036/6413126374" // your real Rewarded ad unit
-        }
+        //}
+
+    val INTERSTITIAL_AD_UNIT_ID: String
+        get() = //if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/1033173712" else
+            "ca-app-pub-9693169126547036/8136770579"
+
+    val BANNER_AD_UNIT_ID: String
+        get() = //if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/6300978111" else
+            "ca-app-pub-9693169126547036/6401765505"
 
     val APP_ID: String
         get() = if (BuildConfig.DEBUG) {

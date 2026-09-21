@@ -16,20 +16,15 @@ import javax.inject.Singleton
 
 @Singleton
 class RewardedAdRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    private val currentActivityHolder: CurrentActivityHolder
 ): RewardedAdRepository {
     private var rewardedAd: RewardedAd? = null
-    private var currentActivity: Activity? = null
-
-    fun setCurrentActivity(activity: Activity?) {
-        currentActivity = activity
-    }
 
     override suspend fun isAdReady(): Boolean = rewardedAd != null
 
     override suspend fun loadAd() {
         if (rewardedAd != null) return
-        android.util.Log.d("AdRepo", "loadAd() starting...")
         suspendCancellableCoroutine <Unit> { continuation ->
             RewardedAd.load(
                 context,
@@ -38,13 +33,11 @@ class RewardedAdRepositoryImpl @Inject constructor(
                 object : RewardedAdLoadCallback() {
                     override fun onAdLoaded(ad: RewardedAd) {
 
-                        android.util.Log.d("AdRepo", "Ad loaded successfully")
                         rewardedAd = ad
                         if (continuation.isActive) continuation.resume(Unit, onCancellation = null)
                     }
 
                     override fun onAdFailedToLoad(error: LoadAdError) {
-                        android.util.Log.e("AdRepo", "Ad failed to load: ${error.message}, code=${error.code}")
 
                         rewardedAd = null
                         if (continuation.isActive) continuation.resume(Unit, onCancellation = null)
@@ -56,10 +49,7 @@ class RewardedAdRepositoryImpl @Inject constructor(
 
     override suspend fun showAd(): Boolean {
         val ad = rewardedAd ?: return false
-        android.util.Log.d("AdRepo", "showAd() called, rewardedAd is null? ${ad == null}")
-        val activity = currentActivity ?: return false
-        android.util.Log.d("AdRepo", "activity found? ${activity != null}")
-
+        val activity = currentActivityHolder.activity ?: return false
 
         return suspendCancellableCoroutine { continuation ->
             var earnedReward = false

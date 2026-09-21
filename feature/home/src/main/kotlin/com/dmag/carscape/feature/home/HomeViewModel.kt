@@ -51,9 +51,9 @@ class HomeViewModel @Inject constructor(
     }
 
     private suspend fun refreshDailyStatus() {
-        val lastComleted = progressRepository.getLastDailyCompletionEpochDay()
+        val lastCompleted = progressRepository.getLastDailyCompletionEpochDay()
         val today = DailyChallenge.todayEpochDay()
-        val locked = lastComleted == today
+        val locked = lastCompleted == today
         val secondsLeft = DailyChallenge.secondsUntilNextDay()
 
         _uiState.update {  it.copy(

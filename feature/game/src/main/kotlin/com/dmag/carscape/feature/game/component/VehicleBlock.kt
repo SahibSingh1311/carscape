@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
@@ -47,8 +46,8 @@ fun VehicleBlock(
     maxForwardCells: Int,   // legal cells in the RIGHT (horizontal) or DOWN (vertical) direction
     maxBackwardCells: Int,  // legal cells in the LEFT (horizontal) or UP (vertical) direction
     onDragCommitted: (cellsMoved: Int) -> Unit,
-    onTap: () -> Unit = {},
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onTap: () -> Unit = {}
 ) {
     val isHorizontal = vehicle.orientation == Orientation.HORIZONTAL
     val widthCells = if (isHorizontal) vehicle.length else vehicle.thickness

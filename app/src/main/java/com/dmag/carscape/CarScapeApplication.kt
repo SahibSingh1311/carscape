@@ -3,7 +3,6 @@ package com.dmag.carscape
 import android.app.Application
 import com.dmag.carscape.data.repository.ProgressRepositoryImpl
 import com.dmag.carscape.domain.repository.WalletRepository
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob

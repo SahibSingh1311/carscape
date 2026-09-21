@@ -15,6 +15,7 @@ import com.dmag.carscape.domain.model.PowerUpInventory
 import com.dmag.carscape.domain.model.PowerUpType
 import com.dmag.carscape.domain.model.Vehicle
 import com.dmag.carscape.domain.repository.CosmeticsRepository
+import com.dmag.carscape.domain.repository.InterstitialAdRepository
 import com.dmag.carscape.domain.repository.LevelRepository
 import com.dmag.carscape.domain.repository.ProgressRepository
 import com.dmag.carscape.domain.repository.ThemeCatalogRepository
@@ -41,6 +42,7 @@ private const val ADD_TIME_SECONDS = 15
 @HiltViewModel
 class GameViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
+    private val interstitialAdRepository: InterstitialAdRepository,
     private val levelRepository: LevelRepository,
     private val progressRepository: ProgressRepository,
     private val walletRepository: WalletRepository,
@@ -67,6 +69,7 @@ class GameViewModel @Inject constructor(
     private var latestHearts: Int = 0
     private var gameState: GameState? = null
     private var currentLevelNumber = 1
+    private var concurrentLevelsCleared = 0
     private var timerJob: Job? = null
     private var freezeJob: Job? = null
     private var timeRemaining = 0
@@ -96,6 +99,8 @@ class GameViewModel @Inject constructor(
                 }
             }
         }
+
+        viewModelScope.launch { interstitialAdRepository.loadAd() }
     }
 
     private suspend fun checkDailyLockAndLoad() {
@@ -105,6 +110,29 @@ class GameViewModel @Inject constructor(
             _uiState.value = GameUiState.DailyLocked(DailyChallenge.secondsUntilNextDay())
         } else {
             loadLevel(DailyChallenge.currentLevelNumber())
+        }
+    }
+
+    private fun shouldShowInterstitial(clearedLevel: Int): Boolean = when (mode) {
+        GameMode.CASUAL -> clearedLevel % 3 == 0
+        GameMode.TIMED -> clearedLevel % 5 == 0
+        GameMode.DAILY -> false
+    }
+
+    fun onNextLevelClicked() {
+        concurrentLevelsCleared += 1
+        val nextLevel = currentLevelNumber + 1
+        if (shouldShowInterstitial(concurrentLevelsCleared)) {
+            viewModelScope.launch {
+                if (!interstitialAdRepository.isAdReady()) {
+                    interstitialAdRepository.loadAd()
+                }
+                interstitialAdRepository.showAd() // suspends until dismissed; proceeds regardless of ad success
+                loadLevel(nextLevel)
+                interstitialAdRepository.loadAd() // preload the next one
+            }
+        } else {
+            loadLevel(nextLevel)
         }
     }
 
