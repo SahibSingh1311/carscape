@@ -1,4 +1,4 @@
 package com.dmag.carscape.feature.game.audio
 
-class GameSoundPlayer {
+class AudioModule {
 }
