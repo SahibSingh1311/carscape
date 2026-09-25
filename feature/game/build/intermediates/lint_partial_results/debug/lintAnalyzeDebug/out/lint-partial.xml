@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<incidents format="6" by="lint 9.1.1" type="partial_results">
-    <map id="UnusedResources">
-        <entry
-            name="model"
-            string="drawable[powerup_hammer(R),powerup_freeze(R),powerup_add_time(R),small_car_1_h(R),small_car_1_v(R),sedan_car_1_h(R),sedan_car_1_v(R),pickup_truck_1_h(R),pickup_truck_1_v(R),limo_car_1_h(R),limo_car_1_v(R),bus_1_h(R),bus_1_v(R)],raw[exit_sound(U),move_sound(U),siren_warning(U),win_sound(U)];;;;"/>
-    </map>
-
-</incidents>

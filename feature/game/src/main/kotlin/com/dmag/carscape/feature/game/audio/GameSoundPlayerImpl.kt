@@ -10,9 +10,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GameSoundPlayer @Inject constructor(
+class GameSoundPlayerImpl @Inject constructor(
     @ApplicationContext context: Context
-) {
+): GameSoundPlayer {
     private val soundPool = SoundPool.Builder()
         .setMaxStreams(4)
         .setAudioAttributes(
@@ -42,10 +42,10 @@ class GameSoundPlayer @Inject constructor(
         null
     }
 
-    fun playMove() { moveSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
-    fun playExit() { exitSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
-    fun playWin() { winSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
-    fun playSiren() { sirenSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
+    override fun playMove() { moveSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
+    override fun playExit() { exitSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
+    override fun playWin() { winSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
+    override fun playSiren() { sirenSoundId?.let { soundPool.play(it, 1f, 1f, 0, 0, 1f) } }
 
-    fun release() = soundPool.release()
+    override fun release() = soundPool.release()
 }

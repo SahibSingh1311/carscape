@@ -1,4 +1,9 @@
 package com.dmag.carscape.feature.game.audio
 
-class GameSoundPlayer {
+interface GameSoundPlayer {
+    fun playMove()
+    fun playExit()
+    fun playWin()
+    fun playSiren()
+    fun release()
 }
