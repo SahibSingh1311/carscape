@@ -37,7 +37,7 @@ class FakeWalletRepository(initial: Wallet = Wallet()) : WalletRepository {
     }
 
     override suspend fun addHeart() {
-        _wallet.update { it.copy(hearts = (it.hearts + 1).coerceAtMost(WalletRepository.MAX_HEARTS)) }
+        _wallet.update { it.copy(hearts = (it.hearts + 1).coerceAtMost(WalletRepository.Companion.MAX_HEARTS)) }
     }
 
     override suspend fun refreshHeartRegen() { /* no-op for tests */ }

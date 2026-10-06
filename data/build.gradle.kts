@@ -11,6 +11,9 @@ android {
         version = release(37)
     }
 
+    testFixtures { enable = true }
+    testOptions { unitTests.isReturnDefaultValues = true }
+
     defaultConfig {
         minSdk = 26
     }
@@ -39,5 +42,14 @@ dependencies {
     implementation(libs.firebase.config.ktx)
     implementation(libs.firebase.auth.ktx)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0")
+
+    testFixturesImplementation(project(":domain"))   // FakeAuthRepository needs AuthRepository
+    testFixturesImplementation(libs.androidx.datastore.preferences)
+    testFixturesImplementation(libs.kotlinx.coroutines.core)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
 }

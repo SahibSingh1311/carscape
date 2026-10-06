@@ -100,6 +100,9 @@ class WalletRepositoryImpl @Inject constructor(
     override suspend fun loseHeart() {
         dataStore.edit { prefs ->
             val current = prefs[HEARTS_KEY] ?: MAX_HEARTS
+            if (current >= MAX_HEARTS) {
+                prefs[LAST_HEART_LOST_AT_KEY] = nowEpochSeconds()
+            }
             prefs[HEARTS_KEY] = (current-1).coerceAtLeast(0)
         }
         syncToFirestore()
@@ -108,7 +111,9 @@ class WalletRepositoryImpl @Inject constructor(
     override suspend fun addHeart() {
         dataStore.edit { prefs ->
             val current = prefs[HEARTS_KEY] ?: MAX_HEARTS
-            prefs[HEARTS_KEY] = (current+1).coerceAtMost(0)
+            val updated = (current + 1).coerceAtMost(MAX_HEARTS)
+            prefs[HEARTS_KEY] = updated
+            if (updated >= MAX_HEARTS) prefs.remove(LAST_HEART_LOST_AT_KEY)
         }
         syncToFirestore()
     }
