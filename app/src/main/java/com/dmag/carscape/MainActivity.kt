@@ -4,44 +4,35 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.dmag.carscape.ui.theme.CarScapeTheme
+import com.dmag.carscape.ads.CurrentActivityHolder
+import com.dmag.carscape.core.designsystem.theme.CarScapeTheme
+import com.dmag.carscape.navigation.CarScapeNavHost
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var currentActivityHolder: CurrentActivityHolder
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             CarScapeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                CarScapeNavHost()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    override fun onResume() {
+        super.onResume()
+        currentActivityHolder.activity = this
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CarScapeTheme {
-        Greeting("Android")
+    override fun onPause() {
+        currentActivityHolder.activity = null
+        super.onPause()
     }
 }

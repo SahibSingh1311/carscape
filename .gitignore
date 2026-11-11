@@ -7,9 +7,19 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/deploymentTargetSelector.xml
 .DS_Store
-/build
+**/build/
 /captures
 .externalNativeBuild
 .cxx
 local.properties
+**/google-services.json
+keystore.properties
+*.jks
+*.keystore
+
+# Release artifacts (publish via GitHub Releases)
+app/release/
+*.apk
+*.aab
