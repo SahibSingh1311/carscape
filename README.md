@@ -1,7 +1,10 @@
 # CarScape
 A traffic-jam sliding puzzle game for Android built using Kotlin and Jetpack Compose. The app follows the MVVM architecture with a multi-module clean architecture setup, and uses Firebase and DataStore for data persistence.
 
-<!-- TODO: add Play Store link once the app is live -->
+## Download
+[![Download APK](https://img.shields.io/badge/Download-APK-3DDC84?logo=android&logoColor=white&style=for-the-badge)](https://github.com/SahibSingh1311/CarScape/releases/latest)
+
+Download the latest APK from the [Releases](https://github.com/SahibSingh1311/CarScape/releases/latest) page and install it on your Android device. You may need to allow installs from unknown sources.
 
 ## Features
 - **MVVM + Clean Architecture:** Multi-module setup (domain, data, core, feature modules) that keeps concerns separated and the app easy to maintain.
