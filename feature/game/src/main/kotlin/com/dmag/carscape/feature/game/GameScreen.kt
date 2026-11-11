@@ -1,0 +1,369 @@
+package com.dmag.carscape.feature.game
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.dmag.carscape.core.designsystem.component.CarScapeButton
+import com.dmag.carscape.core.designsystem.theme.LuckiestGuy
+import com.dmag.carscape.core.designsystem.theme.parseHexColor
+import com.dmag.carscape.domain.model.GameMode
+import com.dmag.carscape.feature.game.component.BoardCanvas
+import com.dmag.carscape.feature.game.component.ConfirmLoseHeartDialog
+import com.dmag.carscape.feature.game.component.DifficultyWarningOverlay
+import com.dmag.carscape.feature.game.component.PauseDialog
+import com.dmag.carscape.feature.game.component.PowerUpBar
+import com.dmag.carscape.feature.game.component.TimeUpDialog
+import com.dmag.carscape.feature.game.component.VehicleBlock
+import com.dmag.carscape.feature.game.component.WinDialog
+
+private enum class PendingHeartAction { RESTART, HOME }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GameScreen(
+    onNavigateHome: () -> Unit,
+    noHeartsDialog: @Composable (onDismiss: () -> Unit, onHeartEarned: () -> Unit) -> Unit = { _, _ -> },
+    bannerAd: @Composable () -> Unit = {},
+    viewModel: GameViewModel = hiltViewModel()
+) {
+    val state by viewModel.uiState.collectAsState()
+    val boardTheme = viewModel.currentBoardTheme()
+    val backgroundRes = com.dmag.carscape.core.designsystem.theme.boardBackgroundFor(boardTheme.id)
+    var isPaused by remember { mutableStateOf(false) }
+    var pendingHeartAction by remember { mutableStateOf<PendingHeartAction?>(null) }
+    var pendingNoHeartsAction by remember { mutableStateOf<PendingHeartAction?>(null) }
+
+    LaunchedEffect(isPaused) {
+        if(isPaused) viewModel.pauseTimer() else viewModel.resumeTimer()
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        if (backgroundRes != null) {
+            Image(
+                painter = painterResource(id = backgroundRes),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        } else {
+            Box(modifier = Modifier.fillMaxSize().background(Color(0xFF1B1140)))
+        }
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor =  Color(0xFFC17A3A).copy(alpha = 0.92f)),
+                    navigationIcon = {
+                        IconButton(onClick = { isPaused = true }) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Pause")
+                        }
+                    },
+                    title = {
+                        val current = state
+                        if (current is GameUiState.Success) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = "Level ${current.levelNumber}",
+                                    fontFamily = LuckiestGuy
+                                )
+                                if (current.mode == GameMode.TIMED && current.timeRemainingSeconds != null) {
+                                    Text(
+                                        text = "⏱ ${current.timeRemainingSeconds}s",
+                                        fontFamily = LuckiestGuy
+                                    )
+                                }
+                                val isCasualBoss =
+                                    current.mode == GameMode.CASUAL && current.board.optimalMoves > 0
+                                if (isCasualBoss) {
+                                    val remaining =
+                                        (current.board.optimalMoves - current.moves).coerceAtLeast(0)
+                                    Text(text = "Moves left: $remaining", fontFamily = LuckiestGuy)
+                                } else {
+                                    Text(text = "Moves: ${current.moves}", fontFamily = LuckiestGuy)
+                                }
+                            }
+                        } else {
+                            Text(text = "CarScape", fontFamily = LuckiestGuy)
+                        }
+                    }
+                )
+            }
+        ) { padding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                contentAlignment = Alignment.Center
+            ) {
+                when (val current = state) {
+                    is GameUiState.Loading -> CircularProgressIndicator()
+
+                    is GameUiState.TimeUp -> {
+                        TimeUpDialog(
+                            onRetry = { viewModel.loadLevel(current.levelNumber) },
+                            onHome = onNavigateHome
+                        )
+                    }
+
+                    is GameUiState.DailyLocked -> {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text(
+                                text = "You've completed today's challenge!",
+                                fontFamily = LuckiestGuy
+                            )
+                            Text("Come back tomorrow", fontFamily = LuckiestGuy)
+                            Spacer(modifier = Modifier.padding(8.dp))
+                            CarScapeButton(
+                                text = "Back to Home",
+                                onClick = onNavigateHome
+                            )
+                        }
+                    }
+
+                    is GameUiState.NoMoreLevels -> {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text("You've cleared all available levels!", fontFamily = LuckiestGuy)
+                            Text("More levels coming soon 🚗", fontFamily = LuckiestGuy)
+                            Spacer(modifier = Modifier.height(16.dp))
+                            CarScapeButton(
+                                text = "Back to Home",
+                                onClick = onNavigateHome
+                            )
+                        }
+                    }
+
+                    is GameUiState.Success -> {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Box(modifier = Modifier.padding(16.dp)) {
+                                BoardCanvas(
+                                    board = current.board,
+                                    tileColorA = parseHexColor(boardTheme.tileColorA),
+                                    tileColorB = parseHexColor(boardTheme.tileColorB),
+                                ) { cellSizePx ->
+                                    val cellSizeDp =
+                                        with(LocalDensity.current) { cellSizePx.toDp() }
+                                    current.board.vehicles.forEach { vehicle ->
+                                        val bounds = viewModel.getDragBounds(vehicle)
+                                        VehicleBlock(
+                                            vehicle = vehicle,
+                                            exits = current.board.exits,
+                                            cellSizeDp = cellSizeDp,
+                                            cellSizePx = cellSizePx,
+                                            maxForwardCells = bounds.maxForwardCells,
+                                            maxBackwardCells = bounds.maxBackwardCells,
+                                            onDragCommitted = { cellsMoved ->
+                                                viewModel.onVehicleDragged(vehicle.id, cellsMoved)
+                                            },
+                                            onTap = { viewModel.onVehicleTapped(vehicle.id) }
+                                        )
+                                    }
+                                }
+                            }
+
+                            PowerUpBar(
+                                powerUps = current.powerUps,
+                                mode = current.mode,
+                                isHammerModeActive = current.isHammerModeActive,
+                                onHammerClick = { viewModel.toggleHammerMode() },
+                                onFreezeClick = { viewModel.useFreeze() },
+                                onAddTimeClick = { viewModel.useAddTime() }
+                            )
+
+                            Spacer(modifier = Modifier.height(20.dp))
+
+                            bannerAd()
+
+                            if (current.isSolved) {
+                                if (current.mode == GameMode.DAILY) {
+                                    WinDialog(
+                                        moves = current.moves,
+                                        coinsEarned = current.board.coinReward,
+                                        onNextLevel = null,  // no next level for Daily — locked until tomorrow
+                                        onRetry = onNavigateHome  // repurpose as the single available action: back to Home
+                                    )
+                                } else {
+                                    WinDialog(
+                                        moves = current.moves,
+                                        coinsEarned = if (current.mode == GameMode.TIMED) current.board.coinReward else null,
+                                        diamondsEarned = current.board.diamondReward.takeIf { it > 0 },
+                                        onNextLevel = { viewModel.onNextLevelClicked() },
+                                        onRetry = null
+                                    )
+                                }
+                            }
+
+                            if (isPaused && pendingHeartAction == null && pendingNoHeartsAction == null) {
+                                PauseDialog(
+                                    onResume = { isPaused = false },
+                                    onRestart = {
+                                        if (current.hearts > 0) pendingHeartAction =
+                                            PendingHeartAction.RESTART
+                                        else pendingNoHeartsAction = PendingHeartAction.RESTART
+                                    },
+                                    onHome = {
+                                        pendingHeartAction = PendingHeartAction.HOME
+                                    }
+                                )
+                            }
+
+                            pendingHeartAction?.let { action ->
+                                ConfirmLoseHeartDialog(
+                                    onConfirm = {
+                                        viewModel.loseHeart()
+                                        when (action) {
+                                            PendingHeartAction.RESTART -> {
+                                                isPaused = false
+                                                viewModel.loadLevel(current.levelNumber)
+                                            }
+
+                                            PendingHeartAction.HOME -> {
+                                                isPaused = false
+                                                onNavigateHome()
+                                            }
+                                        }
+                                        pendingHeartAction = null
+                                    },
+                                    onCancel = {
+                                        pendingHeartAction = null
+                                    } // falls back to PauseDialog automatically
+                                )
+                            }
+
+                            pendingNoHeartsAction?.let { action ->
+                                noHeartsDialog(
+                                    {
+                                        pendingNoHeartsAction = null
+                                    }, // Cancel — falls back to PauseDialog automatically
+                                    {
+                                        // Ad watched, heart earned — that ad IS the toll, no additional loseHeart() call
+                                        when (action) {
+                                            PendingHeartAction.RESTART -> {
+                                                isPaused = false
+                                                viewModel.loadLevel(current.levelNumber)
+                                            }
+
+                                            PendingHeartAction.HOME -> {
+                                                isPaused = false
+                                                onNavigateHome()
+                                            }
+                                        }
+                                        pendingNoHeartsAction = null
+                                    }
+                                )
+                            }
+                        }
+
+                        if (current.showDifficultyWarning) {
+                            DifficultyWarningOverlay(
+                                difficulty = current.board.difficulty,
+                                onFinished = { viewModel.onDifficultyWarningFinished() }
+                            )
+                        }
+                    }
+
+                    is GameUiState.MovesExceeded -> {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Text("Out of moves!", fontFamily = LuckiestGuy, color = Color.White)
+                            Text("This boss level got the better of you.", fontFamily = LuckiestGuy, color = Color.White)
+                            Spacer(modifier = Modifier.height(16.dp))
+                            CarScapeButton(
+                                text = "Retry",
+                                onClick = {
+                                    if (current.hearts > 0) pendingHeartAction =
+                                        PendingHeartAction.RESTART
+                                    else pendingNoHeartsAction = PendingHeartAction.RESTART
+                                },
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            CarScapeButton(text = "Back to Home", onClick = {
+                                pendingHeartAction = PendingHeartAction.HOME
+                            })
+                        }
+
+                        pendingHeartAction?.let { action ->
+                            ConfirmLoseHeartDialog(
+                                onConfirm = {
+                                    viewModel.loseHeart()
+                                    when (action) {
+                                        PendingHeartAction.RESTART -> {
+                                            isPaused = false
+                                            viewModel.loadLevel(current.levelNumber)
+                                        }
+
+                                        PendingHeartAction.HOME -> {
+                                            isPaused = false
+                                            onNavigateHome()
+                                        }
+                                    }
+                                    pendingHeartAction = null
+                                },
+                                onCancel = {
+                                    pendingHeartAction = null
+                                } // falls back to PauseDialog automatically
+                            )
+                        }
+
+                        pendingNoHeartsAction?.let { action ->
+                            noHeartsDialog(
+                                {
+                                    pendingNoHeartsAction = null
+                                }, // Cancel — falls back to PauseDialog automatically
+                                {
+                                    // Ad watched, heart earned — that ad IS the toll, no additional loseHeart() call
+                                    when (action) {
+                                        PendingHeartAction.RESTART -> {
+                                            isPaused = false
+                                            viewModel.loadLevel(current.levelNumber)
+                                        }
+
+                                        PendingHeartAction.HOME -> {
+                                            isPaused = false
+                                            onNavigateHome()
+                                        }
+                                    }
+                                    pendingNoHeartsAction = null
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

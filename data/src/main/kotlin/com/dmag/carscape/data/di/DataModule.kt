@@ -1,0 +1,101 @@
+package com.dmag.carscape.data.di
+
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.dmag.carscape.core.common.DefaultDispatcherProvider
+import com.dmag.carscape.core.common.DispatcherProvider
+import com.dmag.carscape.data.repository.AuthRepositoryImpl
+import com.dmag.carscape.data.repository.CosmeticsRepositoryImpl
+import com.dmag.carscape.data.repository.LevelRepositoryImpl
+import com.dmag.carscape.data.repository.PricingRepositoryImpl
+import com.dmag.carscape.data.repository.ProgressRepositoryImpl
+import com.dmag.carscape.data.repository.ThemeCatalogRepositoryImpl
+import com.dmag.carscape.data.repository.WalletRepositoryImpl
+import com.dmag.carscape.domain.repository.AuthRepository
+import com.dmag.carscape.domain.repository.CosmeticsRepository
+import com.dmag.carscape.domain.repository.LevelRepository
+import com.dmag.carscape.domain.repository.PricingRepository
+import com.dmag.carscape.domain.repository.ProgressRepository
+import com.dmag.carscape.domain.repository.ThemeCatalogRepository
+import com.dmag.carscape.domain.repository.WalletRepository
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "carscape_progress")
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataStoreModule {
+    @Provides
+    @Singleton
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.dataStore
+
+    @Provides
+    @Singleton
+    fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()
+
+    @Provides
+    @Singleton
+    fun provideFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideRemoteConfig(): FirebaseRemoteConfig {
+        val config = FirebaseRemoteConfig.getInstance()
+        config.setDefaultsAsync(
+            mapOf(
+                "price_hammer" to 50L,
+                "price_freeze" to 30L,
+                "price_add_time" to 20L
+            )
+        )
+        return config
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+    @Binds
+    @Singleton
+    abstract fun bindLevelRepository(impl: LevelRepositoryImpl): LevelRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindProgressRepository(impl: ProgressRepositoryImpl): ProgressRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWalletRepository(impl: WalletRepositoryImpl): WalletRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPricingRepository(impl: PricingRepositoryImpl): PricingRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCosmeticsRepository(impl: CosmeticsRepositoryImpl): CosmeticsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindThemeCatalogRepository(impl: ThemeCatalogRepositoryImpl): ThemeCatalogRepository
+}
